@@ -8,6 +8,7 @@ public class Constants
     public const int scoreMax = 10000;
     public const int winRate = 100;
     public const int loseRate = -150;
+    public const double decreaseRate = -16.0;
     public const int limitLevel1 = 2000;
     public const int limitLevel2 = 4000;
     public const int limitLevel3 = 6000;
@@ -23,7 +24,7 @@ public class GameMaster : MonoBehaviour
     public ScoringSystem scoringSystem;
 
     private Level currentLevel;
-    private int currentScore;
+    private float currentScore;
     private Character currentCharacter;
 
     // Start is called before the first frame update
@@ -37,6 +38,8 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float scoreLost = (float) (Constants.decreaseRate * Time.deltaTime);
+        UpdateScore(scoreLost);
     }
 
     public void UpdateCharacterDisplay()
@@ -81,7 +84,7 @@ public class GameMaster : MonoBehaviour
         UpdateCharacterDisplay();
     }
 
-    private void UpdateScore(int value)
+    private void UpdateScore(float value)
     {
         currentScore += value;
         if (currentScore < Constants.scoreMin) {
@@ -118,7 +121,7 @@ public enum Level
 
 static class LevelMethods
 {
-    public static Level NewLevel(this Level level, int score)
+    public static Level NewLevel(this Level level, float score)
     {
         if (score < Constants.limitLevel1) {
             return Level.Level1;
