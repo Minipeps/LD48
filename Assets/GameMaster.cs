@@ -6,8 +6,8 @@ public class Constants
 {
     public const int scoreMin = 0;
     public const int scoreMax = 10000;
-    public const int winRate = 100;
-    public const int loseRate = -150;
+    public const int winRate = 500;
+    public const int loseRate = -700;
     public const double decreaseRate = -16.0;
     public const int limitLevel1 = 2000;
     public const int limitLevel2 = 4000;
@@ -51,7 +51,7 @@ public class GameMaster : MonoBehaviour
 
     public void OnGoToHellClicked()
     {
-	bool win = currentCharacter.shouldGoToHell;
+        bool win = currentCharacter.shouldGoToHell;
         if (win)
         {
             Debug.Log("WIN: Go to Hell!");
@@ -62,13 +62,13 @@ public class GameMaster : MonoBehaviour
             Debug.Log("FAIL: What (the hell) ?");
             UpdateScore(Constants.loseRate);
         }
-	audioManager.playResultSound(win);
+        audioManager.playResultSound(win);
         SwitchToNewCharacter();
     }
 
     public void OnGoToHeavenClicked()
     {
-	bool win = !currentCharacter.shouldGoToHell;
+        bool win = !currentCharacter.shouldGoToHell;
         if (win)
         {
             Debug.Log("WIN: I'll let you pass on this one...");
@@ -79,7 +79,7 @@ public class GameMaster : MonoBehaviour
             Debug.Log("FAIL: Well, it seems you were naughtier than I thought!");
             UpdateScore(Constants.loseRate);
         }
-	audioManager.playResultSound(win);
+        audioManager.playResultSound(win);
         SwitchToNewCharacter();
     }
 

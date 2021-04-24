@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    
+
     public AudioSource sfxWin;
     public AudioSource sfxLoose;
 
@@ -18,15 +18,18 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void playResultSound(bool win) {
-	if (win) {
-		Debug.Log("PLAY WIN");
-		sfxWin.Play();
-	} else {
-		sfxLoose.Play();
-	}
+    public void playResultSound(bool win)
+    {
+        if (win)
+        {
+            sfxWin.Play();
+        }
+        else
+        {
+            sfxLoose.Play();
+        }
     }
 }
