@@ -12,6 +12,9 @@ public class ScoringSystem : MonoBehaviour
     public Image scoreBar;
     public GameObject profile;
 
+    private float yOffsetMin = 41.3f;
+    private float yOffsetMax = 575.6f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +33,8 @@ public class ScoringSystem : MonoBehaviour
         if ((currentScore) > Constants.scoreMax)
         {
             currentScore = Constants.scoreMax;
-        } else if (currentScore < Constants.scoreMin)
+        }
+        else if (currentScore < Constants.scoreMin)
         {
             currentScore = Constants.scoreMin;
         }
@@ -38,7 +42,7 @@ public class ScoringSystem : MonoBehaviour
 
     private void UpdateScoreBar()
     {
-        float inset = GetComponent<RectTransform>().rect.height * (float)(currentScore) / Constants.scoreMax;
+        float inset = yOffsetMin + (yOffsetMax - yOffsetMin) * (float)(currentScore) / Constants.scoreMax;
         scoreBar.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, inset, GetComponent<RectTransform>().rect.height);
     }
 }
