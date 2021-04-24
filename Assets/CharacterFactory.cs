@@ -91,7 +91,7 @@ public class CharacterFactory : MonoBehaviour
             values.Clear();
             foreach (int _ in Enumerable.Range(1, criteriaCount))
             {
-                var value = random.Next(-3, 3);
+                var value = random.Next(-3, 4);
                 values.Add(value);
                 sum += value;
             }
