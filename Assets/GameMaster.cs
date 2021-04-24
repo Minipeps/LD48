@@ -41,7 +41,7 @@ public class GameMaster : MonoBehaviour
 
     public void UpdateCharacterDisplay()
     {
-        characterSelector.UpdateCharacterTraits(currentCharacter);
+        characterSelector.UpdateCharacterTraits(currentCharacter.avatar);
         descriptionFiller.UpdateCharacterDescription(currentCharacter);
     }
 

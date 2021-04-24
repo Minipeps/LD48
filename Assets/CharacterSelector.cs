@@ -35,14 +35,14 @@ public class CharacterSelector : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void UpdateCharacterTraits(Character character)
+    public void UpdateCharacterTraits(Avatar avatar)
     {
-        headshapeImage.sprite = characterFactory.headshapes[character.headshapeType];
-        clothesImage.sprite = characterFactory.clothes[character.bodyType];
-        mouthImage.sprite = characterFactory.mouths[character.mouthType];
-        noseImage.sprite = characterFactory.noses[character.noseType];
-        eyesImage.sprite = characterFactory.eyes[character.eyesType];
-        eyebrowsImage.sprite = characterFactory.eyebrows[character.eyebrowsType];
-        hairImage.sprite = characterFactory.hairs[character.hairType];
+        headshapeImage.sprite = characterFactory.headshapes[avatar.headshapeType];
+        clothesImage.sprite = characterFactory.clothes[avatar.bodyType];
+        mouthImage.sprite = characterFactory.mouths[avatar.mouthType];
+        noseImage.sprite = characterFactory.noses[avatar.noseType];
+        eyesImage.sprite = characterFactory.eyes[avatar.eyesType];
+        eyebrowsImage.sprite = characterFactory.eyebrows[avatar.eyebrowsType];
+        hairImage.sprite = characterFactory.hairs[avatar.hairType];
     }
 }

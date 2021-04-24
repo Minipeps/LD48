@@ -8,6 +8,11 @@ public struct Character
     public string name;
     public List<Criteria> criterias;
     public bool shouldGoToHell;
+    public Avatar avatar;
+};
+
+public struct Avatar
+{
     public int headshapeType;
     public int bodyType;
     public int mouthType;
@@ -72,7 +77,7 @@ public class CharacterFactory : MonoBehaviour
         }
         newCharacter.criterias = criterias;
         newCharacter.shouldGoToHell = moralValue < 0;
-        GenerateRandomCharacterTraits(ref newCharacter);
+        newCharacter.avatar = GenerateRandomCharacterAvatar();
         return newCharacter;
     }
 
@@ -82,15 +87,17 @@ public class CharacterFactory : MonoBehaviour
         return names[random.Next(names.Count)];
     }
 
-    private void GenerateRandomCharacterTraits(ref Character character)
+    private Avatar GenerateRandomCharacterAvatar()
     {
-        character.headshapeType = random.Next(headshapes.Length);
-        character.bodyType = random.Next(clothes.Length);
-        character.mouthType = random.Next(mouths.Length);
-        character.noseType = random.Next(noses.Length);
-        character.eyesType = random.Next(eyes.Length);
-        character.eyebrowsType = random.Next(eyebrows.Length);
-        character.hairType = random.Next(hairs.Length);
+        var avatar = new Avatar();
+        avatar.headshapeType = random.Next(headshapes.Length);
+        avatar.bodyType = random.Next(clothes.Length);
+        avatar.mouthType = random.Next(mouths.Length);
+        avatar.noseType = random.Next(noses.Length);
+        avatar.eyesType = random.Next(eyes.Length);
+        avatar.eyebrowsType = random.Next(eyebrows.Length);
+        avatar.hairType = random.Next(hairs.Length);
+        return avatar;
     }
 
     private Criteria GetRandomCriteria(int value, List<Criteria> alreadyPickedCriterias)
