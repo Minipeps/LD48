@@ -8,6 +8,13 @@ public struct Character
     public string name;
     public List<Criteria> criterias;
     public bool shouldGoToHell;
+    public int headshapeType;
+    public int bodyType;
+    public int mouthType;
+    public int noseType;
+    public int eyesType;
+    public int eyebrowsType;
+    public int hairType;
 };
 
 
@@ -48,25 +55,7 @@ public class CharacterFactory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var character = MakeCharacter(3);
-        Debug.Log("Character loaded: " + character.name);
-        foreach (Criteria criteria in character.criterias)
-        {
-            Debug.Log(criteria.description);
-        }
-        if (character.shouldGoToHell)
-        {
-            Debug.Log("He should go to Hell");
-        }
-        else
-        {
-            Debug.Log("He should go to Heaven");
-        }
-    }
 
-    public void ShowNewCharacter()
-    {
-        Character newCharacter = MakeCharacter(3);
     }
 
     public Character MakeCharacter(int criteriaCount)
@@ -83,6 +72,7 @@ public class CharacterFactory : MonoBehaviour
         }
         newCharacter.criterias = criterias;
         newCharacter.shouldGoToHell = moralValue < 0;
+        GenerateRandomCharacterTraits(ref newCharacter);
         return newCharacter;
     }
 
@@ -90,6 +80,17 @@ public class CharacterFactory : MonoBehaviour
     {
         var names = fetcher.GetNames();
         return names[random.Next(names.Count)];
+    }
+
+    private void GenerateRandomCharacterTraits(ref Character character)
+    {
+        character.headshapeType = random.Next(headshapes.Length);
+        character.bodyType = random.Next(clothes.Length);
+        character.mouthType = random.Next(mouths.Length);
+        character.noseType = random.Next(noses.Length);
+        character.eyesType = random.Next(eyes.Length);
+        character.eyebrowsType = random.Next(eyebrows.Length);
+        character.hairType = random.Next(hairs.Length);
     }
 
     private Criteria GetRandomCriteria(int value)

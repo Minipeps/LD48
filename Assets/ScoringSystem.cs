@@ -26,16 +26,6 @@ public class ScoringSystem : MonoBehaviour
         UpdateScoreBar();
     }
 
-    public void OnGoToHellClicked()
-    {
-
-    }
-
-    public void OnGoToHeavenClicked()
-    {
-
-    }
-
     public void IncreaseScore(int value)
     {
         if ((currentScore += value) > MAXSCORE)

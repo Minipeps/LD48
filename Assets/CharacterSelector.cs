@@ -7,14 +7,6 @@ public class CharacterSelector : MonoBehaviour
 {
     public CharacterFactory characterFactory;
 
-    public int currentHeadshape = 0;
-    public int currentBody = 0;
-    public int currentMouth = 0;
-    public int currentNose = 0;
-    public int currentEyes = 0;
-    public int currentEyebrows = 0;
-    public int currentHair = 0;
-
     [SerializeField]
     Image headshapeImage;
     [SerializeField]
@@ -39,12 +31,18 @@ public class CharacterSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        headshapeImage.sprite = characterFactory.headshapes[currentHeadshape];
-        clothesImage.sprite = characterFactory.clothes[currentBody];
-        mouthImage.sprite = characterFactory.mouths[currentMouth];
-        noseImage.sprite = characterFactory.noses[currentNose];
-        eyesImage.sprite = characterFactory.eyes[currentEyes];
-        eyebrowsImage.sprite = characterFactory.eyebrows[currentEyebrows];
-        hairImage.sprite = characterFactory.hairs[currentHair];
+
+    }
+
+    // Update is called once per frame
+    public void UpdateCharacterTraits(Character character)
+    {
+        headshapeImage.sprite = characterFactory.headshapes[character.headshapeType];
+        clothesImage.sprite = characterFactory.clothes[character.bodyType];
+        mouthImage.sprite = characterFactory.mouths[character.mouthType];
+        noseImage.sprite = characterFactory.noses[character.noseType];
+        eyesImage.sprite = characterFactory.eyes[character.eyesType];
+        eyebrowsImage.sprite = characterFactory.eyebrows[character.eyebrowsType];
+        hairImage.sprite = characterFactory.hairs[character.hairType];
     }
 }

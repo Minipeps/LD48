@@ -221,8 +221,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 883773330}
-        m_TargetAssemblyTypeName: ScoringSystem, Assembly-CSharp
+      - m_Target: {fileID: 906195170}
+        m_TargetAssemblyTypeName: GameMaster, Assembly-CSharp
         m_MethodName: OnGoToHellClicked
         m_Mode: 1
         m_Arguments:
@@ -991,6 +991,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreBar: {fileID: 1268360961}
   profile: {fileID: 2040378977}
+--- !u!1 &906195169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 906195171}
+  - component: {fileID: 906195170}
+  m_Layer: 0
+  m_Name: GameMaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &906195170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906195169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9c41950ef4752489ea73eee838dd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterFactory: {fileID: 746310832}
+  characterSelector: {fileID: 1255431690}
+  descriptionFiller: {fileID: 2146787904}
+  resourceFetcher: {fileID: 723965664}
+  scoringSystem: {fileID: 883773330}
+--- !u!4 &906195171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906195169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 878.8849, y: 384.69754, z: -412.1588}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &944138592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,13 +1206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterFactory: {fileID: 746310832}
-  currentHeadshape: 0
-  currentBody: 0
-  currentMouth: 0
-  currentNose: 0
-  currentEyes: 0
-  currentEyebrows: 0
-  currentHair: 0
   headshapeImage: {fileID: 1655776492}
   clothesImage: {fileID: 661817139}
   mouthImage: {fileID: 775948734}
@@ -1691,8 +1732,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 883773330}
-        m_TargetAssemblyTypeName: ScoringSystem, Assembly-CSharp
+      - m_Target: {fileID: 906195170}
+        m_TargetAssemblyTypeName: GameMaster, Assembly-CSharp
         m_MethodName: OnGoToHeavenClicked
         m_Mode: 1
         m_Arguments:
@@ -2008,6 +2049,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a94f7ee005f0e64a95dccfc87038f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fetcher: {fileID: 723965664}
   nameField: {fileID: 1274741281}
   descriptionFieldPrefab: {fileID: 8109606970309652231, guid: fd262001131b55d4a84183a5e954279a, type: 3}
