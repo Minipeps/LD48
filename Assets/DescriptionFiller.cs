@@ -33,7 +33,7 @@ public class DescriptionFiller : MonoBehaviour
         nameField.text = character.name;
 
         // Update criterias
-        yPos = 40;
+        yPos = 50;
         ClearDescriptionFields();
         foreach (Criteria criteria in character.criterias)
         {
