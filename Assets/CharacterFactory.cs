@@ -29,34 +29,6 @@ public class CharacterFactory : MonoBehaviour
     public ResourceFetcher fetcher;
     private System.Random random = new System.Random();
 
-    // Character traits sprites
-    public Sprite[] headshapes;
-    public Sprite[] clothes;
-    public Sprite[] mouths;
-    public Sprite[] noses;
-    public Sprite[] eyes;
-    public Sprite[] eyebrows;
-    public Sprite[] hairs;
-
-    void Awake()
-    {
-        headshapes = Resources.LoadAll<Sprite>("ProfilePictures/headshape");
-        clothes = Resources.LoadAll<Sprite>("ProfilePictures/clothes");
-        mouths = Resources.LoadAll<Sprite>("ProfilePictures/mouth");
-        noses = Resources.LoadAll<Sprite>("ProfilePictures/nose");
-        eyes = Resources.LoadAll<Sprite>("ProfilePictures/eyes");
-        eyebrows = Resources.LoadAll<Sprite>("ProfilePictures/eyebrows");
-        hairs = Resources.LoadAll<Sprite>("ProfilePictures/hair");
-
-        Debug.Log("Loaded " + headshapes.Length + " headshapes");
-        Debug.Log("Loaded " + clothes.Length + " clothes");
-        Debug.Log("Loaded " + mouths.Length + " mouths");
-        Debug.Log("Loaded " + noses.Length + " noses");
-        Debug.Log("Loaded " + eyes.Length + " eyes");
-        Debug.Log("Loaded " + eyebrows.Length + " eyebrows");
-        Debug.Log("Loaded " + hairs.Length + " hairs");
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -90,13 +62,13 @@ public class CharacterFactory : MonoBehaviour
     private Avatar GenerateRandomCharacterAvatar()
     {
         var avatar = new Avatar();
-        avatar.headshapeType = random.Next(headshapes.Length);
-        avatar.bodyType = random.Next(clothes.Length);
-        avatar.mouthType = random.Next(mouths.Length);
-        avatar.noseType = random.Next(noses.Length);
-        avatar.eyesType = random.Next(eyes.Length);
-        avatar.eyebrowsType = random.Next(eyebrows.Length);
-        avatar.hairType = random.Next(hairs.Length);
+        avatar.headshapeType = random.Next(fetcher.headshapes.Length);
+        avatar.bodyType = random.Next(fetcher.clothes.Length);
+        avatar.mouthType = random.Next(fetcher.mouths.Length);
+        avatar.noseType = random.Next(fetcher.noses.Length);
+        avatar.eyesType = random.Next(fetcher.eyes.Length);
+        avatar.eyebrowsType = random.Next(fetcher.eyebrows.Length);
+        avatar.hairType = random.Next(fetcher.hairs.Length);
         return avatar;
     }
 

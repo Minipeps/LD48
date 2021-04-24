@@ -14,12 +14,20 @@ public class ResourceFetcher : MonoBehaviour
 
     List<Criteria> criterias;
     List<string> names;
+    public Sprite[] headshapes;
+    public Sprite[] clothes;
+    public Sprite[] mouths;
+    public Sprite[] noses;
+    public Sprite[] eyes;
+    public Sprite[] eyebrows;
+    public Sprite[] hairs;
 
     // Start is called before the first frame update
     void Awake()
     {
         fetchNames();
         fetchCriteria();
+        fetchAvatars();
     }
 
     public List<Criteria> GetCriterias()
@@ -69,6 +77,25 @@ public class ResourceFetcher : MonoBehaviour
             }
             Debug.Log("Loaded " + criterias.Count + " criteria");
         }
+    }
+
+    private void fetchAvatars()
+    {
+        headshapes = Resources.LoadAll<Sprite>("ProfilePictures/headshape");
+        clothes = Resources.LoadAll<Sprite>("ProfilePictures/clothes");
+        mouths = Resources.LoadAll<Sprite>("ProfilePictures/mouth");
+        noses = Resources.LoadAll<Sprite>("ProfilePictures/nose");
+        eyes = Resources.LoadAll<Sprite>("ProfilePictures/eyes");
+        eyebrows = Resources.LoadAll<Sprite>("ProfilePictures/eyebrows");
+        hairs = Resources.LoadAll<Sprite>("ProfilePictures/hair");
+
+        Debug.Log("Loaded " + headshapes.Length + " headshapes");
+        Debug.Log("Loaded " + clothes.Length + " clothes");
+        Debug.Log("Loaded " + mouths.Length + " mouths");
+        Debug.Log("Loaded " + noses.Length + " noses");
+        Debug.Log("Loaded " + eyes.Length + " eyes");
+        Debug.Log("Loaded " + eyebrows.Length + " eyebrows");
+        Debug.Log("Loaded " + hairs.Length + " hairs");
     }
 
     // Update is called once per frame

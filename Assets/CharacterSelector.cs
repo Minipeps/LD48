@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CharacterSelector : MonoBehaviour
 {
-    public CharacterFactory characterFactory;
+    public ResourceFetcher resourceFetcher;
 
     [SerializeField]
     Image headshapeImage;
@@ -37,12 +37,12 @@ public class CharacterSelector : MonoBehaviour
     // Update is called once per frame
     public void UpdateCharacterTraits(Avatar avatar)
     {
-        headshapeImage.sprite = characterFactory.headshapes[avatar.headshapeType];
-        clothesImage.sprite = characterFactory.clothes[avatar.bodyType];
-        mouthImage.sprite = characterFactory.mouths[avatar.mouthType];
-        noseImage.sprite = characterFactory.noses[avatar.noseType];
-        eyesImage.sprite = characterFactory.eyes[avatar.eyesType];
-        eyebrowsImage.sprite = characterFactory.eyebrows[avatar.eyebrowsType];
-        hairImage.sprite = characterFactory.hairs[avatar.hairType];
+        headshapeImage.sprite = resourceFetcher.headshapes[avatar.headshapeType];
+        clothesImage.sprite = resourceFetcher.clothes[avatar.bodyType];
+        mouthImage.sprite = resourceFetcher.mouths[avatar.mouthType];
+        noseImage.sprite = resourceFetcher.noses[avatar.noseType];
+        eyesImage.sprite = resourceFetcher.eyes[avatar.eyesType];
+        eyebrowsImage.sprite = resourceFetcher.eyebrows[avatar.eyebrowsType];
+        hairImage.sprite = resourceFetcher.hairs[avatar.hairType];
     }
 }
