@@ -1,8 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using System.IO;
+
+struct Criteria
+{
+    public string description;
+    public int value;
+};
 
 public class fetchCriteria : MonoBehaviour
 {
@@ -10,30 +15,29 @@ public class fetchCriteria : MonoBehaviour
     void Start()
     {
         string criteriaPath = "Resources/criteria.csv";
-        print("start");
-
         using (var reader = new StreamReader(criteriaPath))
         {
-            List<string> listA = new List<string>();
-            List<string> listB = new List<string>();
+            List<Criteria> listCriteria = new List<Criteria>();
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
                 var values = line.Split(',');
 
-                listA.Add(values[0]);
-                listB.Add(values[1]);
+                if (int.TryParse(values[1], out int numValue))
+                {
+                    Criteria newCriteria;
+                    newCriteria.description = values[0];
+                    newCriteria.value = numValue;
+                    listCriteria.Add(newCriteria);
+                }
             }
-            listA.ForEach(print);
-            listB.ForEach(print);
+            Debug.Log("Loaded " + listCriteria.Count + " criteria");
         }
-
-        print("end");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
