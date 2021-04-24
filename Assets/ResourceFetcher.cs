@@ -13,7 +13,8 @@ public class ResourceFetcher : MonoBehaviour
 {
 
     List<Criteria> criterias;
-    List<string> names;
+    List<string> firstNames;
+    List<string> lastNames;
     public Sprite[] headshapes;
     public Sprite[] clothes;
     public Sprite[] mouths;
@@ -25,7 +26,8 @@ public class ResourceFetcher : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        FetchNames();
+        FetchFirstNames();
+        FetchLastNames();
         FetchCriteria();
         FetchAvatars();
     }
@@ -35,24 +37,45 @@ public class ResourceFetcher : MonoBehaviour
         return criterias;
     }
 
-    public List<string> GetNames()
+    public List<string> GetFirstNames()
     {
-        return names;
+        return firstNames;
     }
 
-    private void FetchNames()
+    public List<string> GetLastNames()
     {
-        string namesPath = "Resources/names.csv";
+        return lastNames;
+    }
+
+    private void FetchFirstNames()
+    {
+        string namesPath = "Resources/firstnames.csv";
         using (var reader = new StreamReader(namesPath))
         {
-            names = new List<string>();
+            firstNames = new List<string>();
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
                 var values = line.Split(',');
-                names.Add(values[0]);
+                firstNames.Add(values[0]);
             }
-            Debug.Log("Loaded " + names.Count + " names");
+            Debug.Log("Loaded " + firstNames.Count + " first names");
+        }
+    }
+
+    private void FetchLastNames()
+    {
+        string namesPath = "Resources/lastnames.csv";
+        using (var reader = new StreamReader(namesPath))
+        {
+            lastNames = new List<string>();
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+                lastNames.Add(values[0]);
+            }
+            Debug.Log("Loaded " + lastNames.Count + " last names");
         }
     }
 

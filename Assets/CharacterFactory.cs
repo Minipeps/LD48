@@ -55,8 +55,11 @@ public class CharacterFactory : MonoBehaviour
 
     private string GetRandomName()
     {
-        var names = fetcher.GetNames();
-        return names[random.Next(names.Count)];
+        var firstNames = fetcher.GetFirstNames();
+        var firstName = firstNames[random.Next(firstNames.Count)];
+        var lastNames = fetcher.GetLastNames();
+        var lastName = lastNames[random.Next(lastNames.Count)];
+        return firstName + " " + lastName;
     }
 
     private Avatar GenerateRandomCharacterAvatar()
