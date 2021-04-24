@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public class ScoringSystem : MonoBehaviour
 {
-    static int MINSCORE = 0;
-    static int MAXSCORE = 10000;
-
-    int currentScore = 0;
+    [Range(Constants.scoreMin, Constants.scoreMax)]
+    public int currentScore = Constants.scoreMin;
 
     public Image scoreBar;
     public GameObject profile;
@@ -29,18 +27,18 @@ public class ScoringSystem : MonoBehaviour
     public void UpdateScore(int value)
     {
         currentScore = value;
-        if ((currentScore) > MAXSCORE)
+        if ((currentScore) > Constants.scoreMax)
         {
-            currentScore = MAXSCORE;
-        } else if (currentScore < MINSCORE)
+            currentScore = Constants.scoreMax;
+        } else if (currentScore < Constants.scoreMin)
         {
-            currentScore = MINSCORE;
+            currentScore = Constants.scoreMin;
         }
     }
 
     private void UpdateScoreBar()
     {
-        float inset = GetComponent<RectTransform>().rect.height * (float)(currentScore) / MAXSCORE;
+        float inset = GetComponent<RectTransform>().rect.height * (float)(currentScore) / Constants.scoreMax;
         scoreBar.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, inset, 10);
     }
 }

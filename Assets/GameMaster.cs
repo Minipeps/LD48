@@ -2,6 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Constants
+{
+    public const int scoreMin = 0;
+    public const int scoreMax = 10000;
+    public const int winRate = 100;
+    public const int loseRate = -150;
+    public const int limitLevel1 = 2000;
+    public const int limitLevel2 = 4000;
+    public const int limitLevel3 = 6000;
+    public const int limitLevel4 = 8000;
+}
+
 public class GameMaster : MonoBehaviour
 {
     public CharacterFactory characterFactory;
@@ -9,12 +21,6 @@ public class GameMaster : MonoBehaviour
     public DescriptionFiller descriptionFiller;
     public ResourceFetcher resourceFetcher;
     public ScoringSystem scoringSystem;
-
-    private int winningScore = 100;
-    private int losingScore = -150;
-
-    private int scoreMin = 0;
-    private int scoreMax = 10000;
 
     private Level currentLevel;
     private int currentScore;
@@ -44,12 +50,12 @@ public class GameMaster : MonoBehaviour
         if (currentCharacter.shouldGoToHell)
         {
             Debug.Log("WIN: Go to Hell!" );
-            UpdateScore(winningScore);
+            UpdateScore(Constants.winRate);
         }
         else
         {
             Debug.Log("FAIL: What (the hell) ?" );
-            UpdateScore(losingScore);
+            UpdateScore(Constants.loseRate);
         }
         SwitchToNewCharacter();
     }
@@ -59,12 +65,12 @@ public class GameMaster : MonoBehaviour
         if (!currentCharacter.shouldGoToHell)
         {
             Debug.Log("WIN: I'll let you pass on this one...");
-            UpdateScore(winningScore);
+            UpdateScore(Constants.winRate);
         }
         else
         {
             Debug.Log("FAIL: Well, it seems you were naughtier than I thought!");
-            UpdateScore(losingScore);
+            UpdateScore(Constants.loseRate);
         }
         SwitchToNewCharacter();
     }
@@ -78,11 +84,11 @@ public class GameMaster : MonoBehaviour
     private void UpdateScore(int value)
     {
         currentScore += value;
-        if (currentScore < scoreMin) {
-            currentScore = scoreMin;
-        } else if (currentScore > scoreMax)
+        if (currentScore < Constants.scoreMin) {
+            currentScore = Constants.scoreMin;
+        } else if (currentScore > Constants.scoreMax)
         {
-            currentScore = scoreMax;
+            currentScore = Constants.scoreMax;
         }
         scoringSystem.UpdateScore(currentScore);
         Debug.Log("Current score : " + currentScore);
@@ -114,13 +120,13 @@ static class LevelMethods
 {
     public static Level NewLevel(this Level level, int score)
     {
-        if (score < 2000) {
+        if (score < Constants.limitLevel1) {
             return Level.Level1;
-        } else if (score < 4000) {
+        } else if (score < Constants.limitLevel2) {
             return Level.Level2;
-        } else if (score < 6000) {
+        } else if (score < Constants.limitLevel3) {
             return Level.Level3;
-        } else if (score < 8000) {
+        } else if (score < Constants.limitLevel4) {
             return Level.Level4;
         } else {
             return Level.Level5;
