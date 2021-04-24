@@ -7,15 +7,12 @@ using UnityEngine.UI;
 public class ScoringSystem : MonoBehaviour
 {
     static int MINSCORE = 0;
-    static int MAXSCORE = 100000;
+    static int MAXSCORE = 10000;
 
-    int currentScore = MAXSCORE / 2;
+    int currentScore = 0;
 
     public Image scoreBar;
     public GameObject profile;
-
-    [Range(0, 100)]
-    public int decreasingRate = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -29,17 +26,13 @@ public class ScoringSystem : MonoBehaviour
         UpdateScoreBar();
     }
 
-    public void IncreaseScore(int value)
+    public void UpdateScore(int value)
     {
-        if ((currentScore += value) > MAXSCORE)
+        currentScore = value;
+        if ((currentScore) > MAXSCORE)
         {
             currentScore = MAXSCORE;
-        }
-    }
-
-    public void DecreaseScore(int value)
-    {
-        if ((currentScore -= value) < MINSCORE)
+        } else if (currentScore < MINSCORE)
         {
             currentScore = MINSCORE;
         }

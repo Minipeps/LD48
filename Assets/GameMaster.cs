@@ -10,7 +10,6 @@ public class GameMaster : MonoBehaviour
     public ResourceFetcher resourceFetcher;
     public ScoringSystem scoringSystem;
 
-    private int scoreDecreasingRate = 10;
     private int winningScore = 100;
     private int losingScore = -150;
 
@@ -32,7 +31,6 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoringSystem.DecreaseScore(scoreDecreasingRate);
     }
 
     public void UpdateCharacterDisplay()
@@ -86,7 +84,7 @@ public class GameMaster : MonoBehaviour
         {
             currentScore = scoreMax;
         }
-        // TODO: Update scoringSystem
+        scoringSystem.UpdateScore(currentScore);
         Debug.Log("Current score : " + currentScore);
         UpdateLevel();
     }
