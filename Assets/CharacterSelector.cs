@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class CharacterSelector : MonoBehaviour
 {
-    public int currentHeadshape;
-    public int currentBody;
-    public int currentMouth;
-    public int currentNose;
-    public int currentEyes;
-    public int currentEyebrows;
-    public int currentHair;
+    public int currentHeadshape = 0;
+    public int currentBody = 0;
+    public int currentMouth = 0;
+    public int currentNose = 0;
+    public int currentEyes = 0;
+    public int currentEyebrows = 0;
+    public int currentHair = 0;
 
     Sprite[] headshapes;
     Sprite[] clothes;
@@ -24,7 +24,7 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField]
     Image headshapeImage;
     [SerializeField]
-    Image bodyImage;
+    Image clothesImage;
     [SerializeField]
     Image mouthImage;
     [SerializeField]
@@ -60,5 +60,11 @@ public class CharacterSelector : MonoBehaviour
     void Update()
     {
         headshapeImage.sprite = headshapes[currentHeadshape];
+        clothesImage.sprite = clothes[currentBody];
+        mouthImage.sprite = mouths[currentMouth];
+        noseImage.sprite = noses[currentNose];
+        eyesImage.sprite = eyes[currentEyes];
+        eyebrowsImage.sprite = eyebrows[currentEyebrows];
+        hairImage.sprite = hairs[currentHair];
     }
 }
