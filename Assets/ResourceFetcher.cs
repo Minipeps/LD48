@@ -25,9 +25,9 @@ public class ResourceFetcher : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        fetchNames();
-        fetchCriteria();
-        fetchAvatars();
+        FetchNames();
+        FetchCriteria();
+        FetchAvatars();
     }
 
     public List<Criteria> GetCriterias()
@@ -40,7 +40,7 @@ public class ResourceFetcher : MonoBehaviour
         return names;
     }
 
-    private void fetchNames()
+    private void FetchNames()
     {
         string namesPath = "Resources/names.csv";
         using (var reader = new StreamReader(namesPath))
@@ -56,7 +56,7 @@ public class ResourceFetcher : MonoBehaviour
         }
     }
 
-    private void fetchCriteria()
+    private void FetchCriteria()
     {
         string criteriaPath = "Resources/criteria.csv";
         using (var reader = new StreamReader(criteriaPath))
@@ -79,7 +79,7 @@ public class ResourceFetcher : MonoBehaviour
         }
     }
 
-    private void fetchAvatars()
+    private void FetchAvatars()
     {
         headshapes = Resources.LoadAll<Sprite>("ProfilePictures/headshape");
         clothes = Resources.LoadAll<Sprite>("ProfilePictures/clothes");

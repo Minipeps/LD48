@@ -46,12 +46,12 @@ public class GameMaster : MonoBehaviour
         if (currentCharacter.shouldGoToHell)
         {
             Debug.Log("WIN: Go to Hell!" );
-            updateScore(winningScore);
+            UpdateScore(winningScore);
         }
         else
         {
             Debug.Log("FAIL: What (the hell) ?" );
-            updateScore(losingScore);
+            UpdateScore(losingScore);
         }
         SwitchToNewCharacter();
     }
@@ -61,12 +61,12 @@ public class GameMaster : MonoBehaviour
         if (!currentCharacter.shouldGoToHell)
         {
             Debug.Log("WIN: I'll let you pass on this one...");
-            updateScore(winningScore);
+            UpdateScore(winningScore);
         }
         else
         {
             Debug.Log("FAIL: Well, it seems you were naughtier than I thought!");
-            updateScore(losingScore);
+            UpdateScore(losingScore);
         }
         SwitchToNewCharacter();
     }
@@ -77,7 +77,7 @@ public class GameMaster : MonoBehaviour
         UpdateCharacterDisplay();
     }
 
-    private void updateScore(int value)
+    private void UpdateScore(int value)
     {
         currentScore += value;
         if (currentScore < scoreMin) {
@@ -88,12 +88,12 @@ public class GameMaster : MonoBehaviour
         }
         // TODO: Update scoringSystem
         Debug.Log("Current score : " + currentScore);
-        updateLevel();
+        UpdateLevel();
     }
 
-    private void updateLevel()
+    private void UpdateLevel()
     {
-        var newLevel = currentLevel.newLevel(currentScore);
+        var newLevel = currentLevel.NewLevel(currentScore);
         if (newLevel != currentLevel)
         {
             currentLevel = newLevel;
@@ -114,7 +114,7 @@ public enum Level
 
 static class LevelMethods
 {
-    public static Level newLevel(this Level level, int score)
+    public static Level NewLevel(this Level level, int score)
     {
         if (score < 2000) {
             return Level.Level1;
