@@ -314,6 +314,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1520301167}
+        m_TargetAssemblyTypeName: HandAnimation, Assembly-CSharp
+        m_MethodName: OnHellButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &228008542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2582,6 +2594,7 @@ GameObject:
   - component: {fileID: 1520301164}
   - component: {fileID: 1520301166}
   - component: {fileID: 1520301165}
+  - component: {fileID: 1520301167}
   m_Layer: 5
   m_Name: DemonRightHand
   m_TagString: Untagged
@@ -2605,9 +2618,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 500.7, y: -65.4}
+  m_AnchoredPosition: {x: 403.2436, y: 460.3343}
   m_SizeDelta: {x: 465, y: 649.5}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.2904193, y: 0.8094437}
 --- !u!114 &1520301165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2646,6 +2659,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520301163}
   m_CullTransparentMesh: 1
+--- !u!114 &1520301167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520301163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c02fd3860d4c86343b4bc8e15dfaedf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heavenButton: {fileID: 1775710962}
+  hellButton: {fileID: 228008539}
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animationDuration: 0.3
+  idleTime: 2
 --- !u!1 &1575305885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2995,6 +3048,18 @@ MonoBehaviour:
       - m_Target: {fileID: 753357152}
         m_TargetAssemblyTypeName: GameMaster, Assembly-CSharp
         m_MethodName: OnGoToHeavenClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1520301167}
+        m_TargetAssemblyTypeName: HandAnimation, Assembly-CSharp
+        m_MethodName: OnHeavenButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
