@@ -6,8 +6,8 @@ public class Constants
 {
     public const int scoreMin = 0;
     public const int scoreMax = 10000;
-    public const int winRate = 500;
-    public const int loseRate = -700;
+    public const int winRate = 200;
+    public const int loseRate = -250;
     public const double decreaseRate = -16.0;
     public const int limitLevel1 = 2000;
     public const int limitLevel2 = 4000;
