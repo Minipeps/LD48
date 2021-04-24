@@ -9,15 +9,41 @@ struct Criteria
     public int value;
 };
 
-public class fetchCriteria : MonoBehaviour
+public class ResourceFetcher : MonoBehaviour
 {
+
+    List<Criteria> criterias;
+    List<string> names;
+
     // Start is called before the first frame update
     void Start()
+    {
+        fetchNames();
+        fetchCriteria();
+    }
+
+    private void fetchNames()
+    {
+        string namesPath = "Resources/names.csv";
+        using (var reader = new StreamReader(namesPath))
+        {
+            names = new List<string>();
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+                names.Add(values[0]);
+            }
+            Debug.Log("Loaded " + names.Count + " names");
+        }
+    }
+
+    private void fetchCriteria()
     {
         string criteriaPath = "Resources/criteria.csv";
         using (var reader = new StreamReader(criteriaPath))
         {
-            List<Criteria> listCriteria = new List<Criteria>();
+            criterias = new List<Criteria>();
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
@@ -28,10 +54,10 @@ public class fetchCriteria : MonoBehaviour
                     Criteria newCriteria;
                     newCriteria.description = values[0];
                     newCriteria.value = numValue;
-                    listCriteria.Add(newCriteria);
+                    criterias.Add(newCriteria);
                 }
             }
-            Debug.Log("Loaded " + listCriteria.Count + " criteria");
+            Debug.Log("Loaded " + criterias.Count + " criteria");
         }
     }
 
