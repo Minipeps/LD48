@@ -67,10 +67,10 @@ public class ResourceFetcher : MonoBehaviour
                 var line = reader.ReadLine();
                 var values = line.Split(',');
 
-                if (int.TryParse(values[1], out int numValue))
+                if (int.TryParse(values[0], out int numValue))
                 {
                     Criteria newCriteria;
-                    newCriteria.description = values[0];
+                    newCriteria.description = values[1];
                     newCriteria.value = numValue;
                     criterias.Add(newCriteria);
                 }
