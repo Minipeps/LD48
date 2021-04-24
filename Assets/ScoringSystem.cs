@@ -39,6 +39,6 @@ public class ScoringSystem : MonoBehaviour
     private void UpdateScoreBar()
     {
         float inset = GetComponent<RectTransform>().rect.height * (float)(currentScore) / Constants.scoreMax;
-        scoreBar.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, inset, 10);
+        scoreBar.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, inset, GetComponent<RectTransform>().rect.height);
     }
 }
