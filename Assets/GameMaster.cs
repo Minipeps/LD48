@@ -39,7 +39,7 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float scoreLost = (float) (Constants.decreaseRate * Time.deltaTime);
+        float scoreLost = (float)(Constants.decreaseRate * Time.deltaTime);
         UpdateScore(scoreLost);
     }
 
@@ -54,12 +54,12 @@ public class GameMaster : MonoBehaviour
 	bool win = currentCharacter.shouldGoToHell;
         if (win)
         {
-            Debug.Log("WIN: Go to Hell!" );
+            Debug.Log("WIN: Go to Hell!");
             UpdateScore(Constants.winRate);
         }
         else
         {
-            Debug.Log("FAIL: What (the hell) ?" );
+            Debug.Log("FAIL: What (the hell) ?");
             UpdateScore(Constants.loseRate);
         }
 	audioManager.playResultSound(win);
@@ -92,14 +92,15 @@ public class GameMaster : MonoBehaviour
     private void UpdateScore(float value)
     {
         currentScore += value;
-        if (currentScore < Constants.scoreMin) {
+        if (currentScore < Constants.scoreMin)
+        {
             currentScore = Constants.scoreMin;
-        } else if (currentScore > Constants.scoreMax)
+        }
+        else if (currentScore > Constants.scoreMax)
         {
             currentScore = Constants.scoreMax;
         }
         scoringSystem.UpdateScore(currentScore);
-        Debug.Log("Current score : " + currentScore);
         UpdateLevel();
     }
 
@@ -111,7 +112,6 @@ public class GameMaster : MonoBehaviour
             currentLevel = newLevel;
             // TODO: Update new background, new music etc
         }
-        Debug.Log("Current Level : " + currentLevel);
     }
 }
 
@@ -128,15 +128,24 @@ static class LevelMethods
 {
     public static Level NewLevel(this Level level, float score)
     {
-        if (score < Constants.limitLevel1) {
+        if (score < Constants.limitLevel1)
+        {
             return Level.Level1;
-        } else if (score < Constants.limitLevel2) {
+        }
+        else if (score < Constants.limitLevel2)
+        {
             return Level.Level2;
-        } else if (score < Constants.limitLevel3) {
+        }
+        else if (score < Constants.limitLevel3)
+        {
             return Level.Level3;
-        } else if (score < Constants.limitLevel4) {
+        }
+        else if (score < Constants.limitLevel4)
+        {
             return Level.Level4;
-        } else {
+        }
+        else
+        {
             return Level.Level5;
         }
     }
