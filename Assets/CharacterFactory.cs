@@ -66,7 +66,7 @@ public class CharacterFactory : MonoBehaviour
         var moralValue = 0;
         foreach (int criteriaValue in GenerateRandomCriteriaValues(criteriaCount))
         {
-            var newCriteria = GetRandomCriteria(criteriaValue);
+            var newCriteria = GetRandomCriteria(criteriaValue, criterias);
             criterias.Add(newCriteria);
             moralValue += newCriteria.value;
         }
@@ -93,11 +93,14 @@ public class CharacterFactory : MonoBehaviour
         character.hairType = random.Next(hairs.Length);
     }
 
-    private Criteria GetRandomCriteria(int value)
+    private Criteria GetRandomCriteria(int value, List<Criteria> alreadyPickedCriterias)
     {
         var criterias = fetcher.GetCriterias();
         var filteredCriterias = criterias.FindAll(criteria => criteria.value == value);
-        return filteredCriterias[random.Next(filteredCriterias.Count)];
+        Criteria criteriaCandidate;
+        while (alreadyPickedCriterias.Contains(criteriaCandidate = filteredCriterias[random.Next(filteredCriterias.Count)]))
+        { /* Do nothing */ }
+        return criteriaCandidate;
     }
 
     private List<int> GenerateRandomCriteriaValues(int criteriaCount)

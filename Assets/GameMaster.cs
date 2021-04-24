@@ -17,7 +17,6 @@ public class GameMaster : MonoBehaviour
     public ResourceFetcher resourceFetcher;
     public ScoringSystem scoringSystem;
 
-
     private Difficulty currentDifficulty;
 
     private Character currentCharacter;
@@ -43,12 +42,20 @@ public class GameMaster : MonoBehaviour
     public void OnGoToHellClicked()
     {
         // TODO: update score
+        if (currentCharacter.shouldGoToHell)
+            Debug.Log("WIN: Go to Hell!");
+        else
+            Debug.Log("FAIL: What (the hell) ?");
         SwitchToNewCharacter();
     }
 
     public void OnGoToHeavenClicked()
     {
         // TODO: update score
+        if (!currentCharacter.shouldGoToHell)
+            Debug.Log("WIN: I'll let you pass on this one...");
+        else
+            Debug.Log("FAIL: Well, it seems you were naughtier than I tought!");
         SwitchToNewCharacter();
     }
 
