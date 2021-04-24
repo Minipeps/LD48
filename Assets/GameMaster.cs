@@ -22,6 +22,7 @@ public class GameMaster : MonoBehaviour
     public DescriptionFiller descriptionFiller;
     public ResourceFetcher resourceFetcher;
     public ScoringSystem scoringSystem;
+    public AudioManager audioManager;
 
     private Level currentLevel;
     private float currentScore;
@@ -50,7 +51,8 @@ public class GameMaster : MonoBehaviour
 
     public void OnGoToHellClicked()
     {
-        if (currentCharacter.shouldGoToHell)
+	bool win = currentCharacter.shouldGoToHell;
+        if (win)
         {
             Debug.Log("WIN: Go to Hell!" );
             UpdateScore(Constants.winRate);
@@ -60,12 +62,14 @@ public class GameMaster : MonoBehaviour
             Debug.Log("FAIL: What (the hell) ?" );
             UpdateScore(Constants.loseRate);
         }
+	audioManager.playResultSound(win);
         SwitchToNewCharacter();
     }
 
     public void OnGoToHeavenClicked()
     {
-        if (!currentCharacter.shouldGoToHell)
+	bool win = !currentCharacter.shouldGoToHell;
+        if (win)
         {
             Debug.Log("WIN: I'll let you pass on this one...");
             UpdateScore(Constants.winRate);
@@ -75,6 +79,7 @@ public class GameMaster : MonoBehaviour
             Debug.Log("FAIL: Well, it seems you were naughtier than I thought!");
             UpdateScore(Constants.loseRate);
         }
+	audioManager.playResultSound(win);
         SwitchToNewCharacter();
     }
 
