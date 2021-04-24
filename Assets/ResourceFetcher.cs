@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-struct Criteria
+public struct Criteria
 {
     public string description;
     public int value;
@@ -16,10 +16,20 @@ public class ResourceFetcher : MonoBehaviour
     List<string> names;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         fetchNames();
         fetchCriteria();
+    }
+
+    public List<Criteria> GetCriterias()
+    {
+        return criterias;
+    }
+
+    public List<string> GetNames()
+    {
+        return names;
     }
 
     private void fetchNames()
