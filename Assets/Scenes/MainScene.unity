@@ -985,7 +985,7 @@ MonoBehaviour:
   currentEyebrows: 0
   currentHair: 0
   headshapeImage: {fileID: 1655776492}
-  bodyImage: {fileID: 661817139}
+  clothesImage: {fileID: 661817139}
   mouthImage: {fileID: 775948734}
   noseImage: {fileID: 442177600}
   eyesImage: {fileID: 1575305887}
