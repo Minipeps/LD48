@@ -7,23 +7,28 @@ public class DescriptionFiller : MonoBehaviour
 {
     public ResourceFetcher fetcher;
 
+    public Text nameField;
+
     [SerializeField]
     Text descriptionFieldPrefab;
 
     List<Text> descriptionFields = new List<Text>();
     List<Criteria> criterias = new List<Criteria>();
 
-    private int yPos;
+    private float yPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        var names = fetcher.GetNames();
+        nameField.text = fetcher.GetNames()[0];
         var criterias = fetcher.GetCriterias();
-        yPos = -10;
+        yPos = 40;
         foreach (Criteria criteria in criterias)
         {
             AddDescriptionField(criteria);
+            yPos += descriptionFieldPrefab.rectTransform.rect.height;
+            if (yPos > 100)
+                break;
         }
     }
 
@@ -36,8 +41,8 @@ public class DescriptionFiller : MonoBehaviour
     private void AddDescriptionField(Criteria criteria)
     {
         Text newField = Instantiate(descriptionFieldPrefab, this.transform);
-        newField.text = criteria.description;
-        newField.rectTransform.localPosition.Set(10, yPos, 0);
+        newField.text = " - " + criteria.description;
+        newField.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, yPos, descriptionFieldPrefab.rectTransform.rect.height);
         descriptionFields.Add(newField);
     }
 }
