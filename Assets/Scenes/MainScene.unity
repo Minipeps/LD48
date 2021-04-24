@@ -989,9 +989,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9496fe9a161a758469b5338e12478eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentScore: 0
   scoreBar: {fileID: 1268360961}
   profile: {fileID: 2040378977}
-  decreasingRate: 10
 --- !u!1 &906195169
 GameObject:
   m_ObjectHideFlags: 0
