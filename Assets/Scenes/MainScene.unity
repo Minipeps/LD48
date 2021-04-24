@@ -804,6 +804,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fetcher: {fileID: 723965664}
+  headshapes: []
+  clothes: []
+  mouths: []
+  noses: []
+  eyes: []
+  eyebrows: []
+  hairs: []
 --- !u!4 &746310833
 Transform:
   m_ObjectHideFlags: 0
@@ -1150,6 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c741c24511cc14b9817244059f509a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterFactory: {fileID: 746310832}
   currentHeadshape: 0
   currentBody: 0
   currentMouth: 0

@@ -17,21 +17,56 @@ public class CharacterFactory : MonoBehaviour
     public ResourceFetcher fetcher;
     private System.Random random = new System.Random();
 
+    // Character traits sprites
+    public Sprite[] headshapes;
+    public Sprite[] clothes;
+    public Sprite[] mouths;
+    public Sprite[] noses;
+    public Sprite[] eyes;
+    public Sprite[] eyebrows;
+    public Sprite[] hairs;
+
+    void Awake()
+    {
+        headshapes = Resources.LoadAll<Sprite>("ProfilePictures/headshape");
+        clothes = Resources.LoadAll<Sprite>("ProfilePictures/clothes");
+        mouths = Resources.LoadAll<Sprite>("ProfilePictures/mouth");
+        noses = Resources.LoadAll<Sprite>("ProfilePictures/nose");
+        eyes = Resources.LoadAll<Sprite>("ProfilePictures/eyes");
+        eyebrows = Resources.LoadAll<Sprite>("ProfilePictures/eyebrows");
+        hairs = Resources.LoadAll<Sprite>("ProfilePictures/hair");
+
+        Debug.Log("Loaded " + headshapes.Length + " headshapes");
+        Debug.Log("Loaded " + clothes.Length + " clothes");
+        Debug.Log("Loaded " + mouths.Length + " mouths");
+        Debug.Log("Loaded " + noses.Length + " noses");
+        Debug.Log("Loaded " + eyes.Length + " eyes");
+        Debug.Log("Loaded " + eyebrows.Length + " eyebrows");
+        Debug.Log("Loaded " + hairs.Length + " hairs");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         var character = MakeCharacter(3);
         Debug.Log("Character loaded: " + character.name);
-        foreach(Criteria criteria in character.criterias)
+        foreach (Criteria criteria in character.criterias)
         {
             Debug.Log(criteria.description);
         }
-        if (character.shouldGoToHell) {
+        if (character.shouldGoToHell)
+        {
             Debug.Log("He should go to Hell");
-        } else
+        }
+        else
         {
             Debug.Log("He should go to Heaven");
         }
+    }
+
+    public void ShowNewCharacter()
+    {
+        Character newCharacter = MakeCharacter(3);
     }
 
     public Character MakeCharacter(int criteriaCount)
@@ -60,7 +95,7 @@ public class CharacterFactory : MonoBehaviour
     private Criteria GetRandomCriteria(int value)
     {
         var criterias = fetcher.GetCriterias();
-        var filteredCriterias = criterias.FindAll( criteria => criteria.value == value);
+        var filteredCriterias = criterias.FindAll(criteria => criteria.value == value);
         return filteredCriterias[random.Next(filteredCriterias.Count)];
     }
 
@@ -68,7 +103,7 @@ public class CharacterFactory : MonoBehaviour
     {
         var values = new List<int>();
         var sum = 0;
-        while(sum == 0)
+        while (sum == 0)
         {
             values.Clear();
             foreach (int _ in Enumerable.Range(1, criteriaCount))
@@ -84,6 +119,6 @@ public class CharacterFactory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
