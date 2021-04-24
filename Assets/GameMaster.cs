@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Difficulty
-{
-    Hell,
-    DeeperHell,
-    // TODO
-}
-
 public class GameMaster : MonoBehaviour
 {
     public CharacterFactory characterFactory;
@@ -17,19 +10,22 @@ public class GameMaster : MonoBehaviour
     public ResourceFetcher resourceFetcher;
     public ScoringSystem scoringSystem;
 
-    [Range(0, 100)]
-    public int scoreDecreasingRate = 10;
-    [Range(0, 10000)]
-    public int winningScore = 1000;
-    [Range(0, 10000)]
-    public int losingScore = 1000;
+    private int scoreDecreasingRate = 10;
+    private int winningScore = 100;
+    private int losingScore = -150;
 
-    private Difficulty currentDifficulty;
+    private int scoreMin = 0;
+    private int scoreMax = 10000;
+
+    private Level currentLevel;
+    private int currentScore;
     private Character currentCharacter;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentScore = 0;
+        currentLevel = Level.Level1;
         SwitchToNewCharacter();
     }
 
@@ -49,13 +45,13 @@ public class GameMaster : MonoBehaviour
     {
         if (currentCharacter.shouldGoToHell)
         {
-            scoringSystem.IncreaseScore(winningScore);
-            Debug.Log("WIN: Go to Hell!");
+            Debug.Log("WIN: Go to Hell!" );
+            updateScore(winningScore);
         }
         else
         {
-            scoringSystem.DecreaseScore(losingScore);
-            Debug.Log("FAIL: What (the hell) ?");
+            Debug.Log("FAIL: What (the hell) ?" );
+            updateScore(losingScore);
         }
         SwitchToNewCharacter();
     }
@@ -64,13 +60,13 @@ public class GameMaster : MonoBehaviour
     {
         if (!currentCharacter.shouldGoToHell)
         {
-            scoringSystem.IncreaseScore(winningScore);
             Debug.Log("WIN: I'll let you pass on this one...");
+            updateScore(winningScore);
         }
         else
         {
-            scoringSystem.DecreaseScore(losingScore);
-            Debug.Log("FAIL: Well, it seems you were naughtier than I tought!");
+            Debug.Log("FAIL: Well, it seems you were naughtier than I thought!");
+            updateScore(losingScore);
         }
         SwitchToNewCharacter();
     }
@@ -79,5 +75,57 @@ public class GameMaster : MonoBehaviour
     {
         currentCharacter = characterFactory.MakeCharacter(3);
         UpdateCharacterDisplay();
+    }
+
+    private void updateScore(int value)
+    {
+        currentScore += value;
+        if (currentScore < scoreMin) {
+            currentScore = scoreMin;
+        } else if (currentScore > scoreMax)
+        {
+            currentScore = scoreMax;
+        }
+        // TODO: Update scoringSystem
+        Debug.Log("Current score : " + currentScore);
+        updateLevel();
+    }
+
+    private void updateLevel()
+    {
+        var newLevel = currentLevel.newLevel(currentScore);
+        if (newLevel != currentLevel)
+        {
+            currentLevel = newLevel;
+            // TODO: Update new background, new music etc
+        }
+        Debug.Log("Current Level : " + currentLevel);
+    }
+}
+
+public enum Level
+{
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+}
+
+static class LevelMethods
+{
+    public static Level newLevel(this Level level, int score)
+    {
+        if (score < 2000) {
+            return Level.Level1;
+        } else if (score < 4000) {
+            return Level.Level2;
+        } else if (score < 6000) {
+            return Level.Level3;
+        } else if (score < 8000) {
+            return Level.Level4;
+        } else {
+            return Level.Level5;
+        }
     }
 }
