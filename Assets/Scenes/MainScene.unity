@@ -991,6 +991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreBar: {fileID: 1268360961}
   profile: {fileID: 2040378977}
+  decreasingRate: 10
 --- !u!1 &906195169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1026,9 @@ MonoBehaviour:
   descriptionFiller: {fileID: 2146787904}
   resourceFetcher: {fileID: 723965664}
   scoringSystem: {fileID: 883773330}
+  scoreDecreasingRate: 1
+  winningScore: 1000
+  losingScore: 1000
 --- !u!4 &906195171
 Transform:
   m_ObjectHideFlags: 0

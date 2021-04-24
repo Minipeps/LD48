@@ -17,8 +17,14 @@ public class GameMaster : MonoBehaviour
     public ResourceFetcher resourceFetcher;
     public ScoringSystem scoringSystem;
 
-    private Difficulty currentDifficulty;
+    [Range(0, 100)]
+    public int scoreDecreasingRate = 10;
+    [Range(0, 10000)]
+    public int winningScore = 1000;
+    [Range(0, 10000)]
+    public int losingScore = 1000;
 
+    private Difficulty currentDifficulty;
     private Character currentCharacter;
 
     // Start is called before the first frame update
@@ -30,7 +36,7 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        scoringSystem.DecreaseScore(scoreDecreasingRate);
     }
 
     public void UpdateCharacterDisplay()
@@ -41,21 +47,31 @@ public class GameMaster : MonoBehaviour
 
     public void OnGoToHellClicked()
     {
-        // TODO: update score
         if (currentCharacter.shouldGoToHell)
+        {
+            scoringSystem.IncreaseScore(winningScore);
             Debug.Log("WIN: Go to Hell!");
+        }
         else
+        {
+            scoringSystem.DecreaseScore(losingScore);
             Debug.Log("FAIL: What (the hell) ?");
+        }
         SwitchToNewCharacter();
     }
 
     public void OnGoToHeavenClicked()
     {
-        // TODO: update score
         if (!currentCharacter.shouldGoToHell)
+        {
+            scoringSystem.IncreaseScore(winningScore);
             Debug.Log("WIN: I'll let you pass on this one...");
+        }
         else
+        {
+            scoringSystem.DecreaseScore(losingScore);
             Debug.Log("FAIL: Well, it seems you were naughtier than I tought!");
+        }
         SwitchToNewCharacter();
     }
 

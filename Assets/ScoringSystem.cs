@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,13 @@ public class ScoringSystem : MonoBehaviour
     static int MINSCORE = 0;
     static int MAXSCORE = 100000;
 
-    int currentScore = MINSCORE;
+    int currentScore = MAXSCORE / 2;
 
     public Image scoreBar;
     public GameObject profile;
+
+    [Range(0, 100)]
+    public int decreasingRate = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +26,6 @@ public class ScoringSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IncreaseScore(10);
         UpdateScoreBar();
     }
 
