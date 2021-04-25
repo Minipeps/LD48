@@ -9,6 +9,8 @@ public struct Character
     public List<Criteria> criterias;
     public bool shouldGoToHell;
     public Avatar avatar;
+    public double fullCountdown;
+    public double countdown;
 };
 
 public struct Avatar
@@ -39,7 +41,7 @@ public class CharacterFactory : MonoBehaviour
 
     }
 
-    public Character MakeCharacter(int criteriaCount)
+    public Character MakeCharacter(int criteriaCount, double countdown)
     {
         Character newCharacter = new Character();
         newCharacter.name = GetRandomName();
@@ -64,6 +66,8 @@ public class CharacterFactory : MonoBehaviour
             newCharacter.shouldGoToHell = false;
         }
         newCharacter.avatar = GenerateRandomCharacterAvatar(isAngel, isDevil);
+        newCharacter.fullCountdown = countdown;
+        newCharacter.countdown = countdown;
         return newCharacter;
     }
 

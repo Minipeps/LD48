@@ -130,7 +130,7 @@ public class GameMaster : MonoBehaviour
 
     private void SwitchToNewCharacter()
     {
-        currentCharacter = characterFactory.MakeCharacter(currentLevel.Criteria());
+        currentCharacter = characterFactory.MakeCharacter(currentLevel.Criteria(), 8.0);
         UpdateCharacterDisplay();
     }
 
