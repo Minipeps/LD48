@@ -709,11 +709,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMaster: {fileID: 753357152}
-  playButton: {fileID: 2115633815}
-  rulesButton: {fileID: 1532644514}
-  languageButton: {fileID: 1468089725}
-  soundButton: {fileID: 1856985986}
-  quitButton: {fileID: 448452848}
   soundEnabled: 1
   language: en
 --- !u!4 &406623323
@@ -742,9 +737,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8202c06e455ee48a55dd280d9be6a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsManager: {fileID: 406623322}
   gameMaster: {fileID: 753357152}
   menuPanel: {fileID: 902388114}
   pauseButton: {fileID: 1423756963}
+  playButton: {fileID: 2115633815}
+  rulesButton: {fileID: 1532644514}
+  languageButton: {fileID: 1468089725}
+  soundButton: {fileID: 1856985986}
+  quitButton: {fileID: 448452848}
 --- !u!1 &425275841
 GameObject:
   m_ObjectHideFlags: 0
@@ -3102,18 +3103,18 @@ PrefabInstance:
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 406623322}
+      objectReference: {fileID: 406623324}
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleSound
+      value: OnSoundPressed
       objectReference: {fileID: 0}
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsManager, Assembly-CSharp
+      value: MenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3644,7 +3645,7 @@ PrefabInstance:
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 406623322}
+      objectReference: {fileID: 406623324}
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3659,7 +3660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchLanguage
+      value: OnLanguagePressed
       objectReference: {fileID: 0}
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -3667,7 +3668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsManager, Assembly-CSharp
+      value: MenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3662706226137479681, guid: 015fb1a6bc3080446b825b7922760357, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
