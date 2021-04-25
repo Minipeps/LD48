@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Constants
 {
     public const int scoreMin = 0;
     public const int scoreMax = 10000;
-    public const int winRate = 200;
-    public const int loseRate = -250;
+    public const int winRate = 500;
+    public const int loseRate = -750;
     public const double decreaseRate = -16.0;
     public const int limitLevel1 = 2000;
     public const int limitLevel2 = 4000;
     public const int limitLevel3 = 6000;
     public const int limitLevel4 = 8000;
+}
+
+public enum GameState
+{
+    Pause,
+    Play,
 }
 
 public class GameMaster : MonoBehaviour
@@ -25,6 +32,10 @@ public class GameMaster : MonoBehaviour
     public ScoringSystem scoringSystem;
     public AudioManager audioManager;
 
+    public GameObject buttonsHandle;
+
+    public GameState currentGameState;
+
     private Level currentLevel;
     private float currentScore;
     private Character currentCharacter;
@@ -35,14 +46,37 @@ public class GameMaster : MonoBehaviour
         currentScore = 0;
         currentLevel = Level.Level1;
         audioManager.PlayAmbiance(currentLevel, currentLevel);
-        SwitchToNewCharacter();
+        SwitchGameState(GameState.Pause);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float scoreLost = (float)(Constants.decreaseRate * Time.deltaTime);
-        UpdateScore(scoreLost);
+        switch (currentGameState)
+        {
+            case GameState.Pause:
+                break;
+            case GameState.Play:
+                float scoreLost = (float)(Constants.decreaseRate * Time.deltaTime);
+                UpdateScore(scoreLost);
+                break;
+        }
+    }
+
+    public void SwitchGameState(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.Pause:
+                // Disable buttons
+                SetButtonState(false);
+                break;
+            case GameState.Play:
+                SetButtonState(true);
+                SwitchToNewCharacter();
+                break;
+        }
+        currentGameState = newState;
     }
 
     public void UpdateCharacterDisplay()
@@ -83,6 +117,14 @@ public class GameMaster : MonoBehaviour
         }
         audioManager.PlayResultSound(win);
         SwitchToNewCharacter();
+    }
+
+    private void SetButtonState(bool enable)
+    {
+        foreach (Button button in buttonsHandle.GetComponentsInChildren<Button>())
+        {
+            button.interactable = enable;
+        }
     }
 
     private void SwitchToNewCharacter()

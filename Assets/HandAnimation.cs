@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HandAnimation : MonoBehaviour
 {
-    public Transform heavenButton;
-    public Transform hellButton;
-
     public AnimationCurve animationCurve;
 
     public float animationDuration;
@@ -36,22 +34,25 @@ public class HandAnimation : MonoBehaviour
         }
     }
 
-    public void OnHeavenButtonClicked()
+    public void OnButtonClicked(string buttonName)
     {
-        AnimateTo(heavenButton.position);
-        shouldCheckForIdle = true;
-    }
-
-    public void OnHellButtonClicked()
-    {
-        AnimateTo(hellButton.position);
-        shouldCheckForIdle = true;
+        // Get button position
+        GameObject button;
+        if (button = GameObject.Find(buttonName))
+        {
+            AnimateTo(button.transform.position);
+            shouldCheckForIdle = true;
+        }
+        else
+        {
+            Debug.LogWarning(buttonName + " not found!");
+        }
     }
 
     public void ResetHandPosition()
     {
-        shouldCheckForIdle = false;
         AnimateTo(defaultPos);
+        shouldCheckForIdle = false;
     }
 
     private void AnimateTo(Vector3 target)
