@@ -18,6 +18,7 @@ public class Constants
 
 public enum GameState
 {
+    Menu,
     Pause,
     Play,
 }
@@ -47,7 +48,7 @@ public class GameMaster : MonoBehaviour
         currentScore = 0;
         currentLevel = Level.Level1;
         audioManager.PlayAmbiance(currentLevel, currentLevel);
-        SwitchGameState(GameState.Pause);
+        SwitchGameState(GameState.Menu);
     }
 
     // Update is called once per frame
@@ -55,6 +56,7 @@ public class GameMaster : MonoBehaviour
     {
         switch (currentGameState)
         {
+            case GameState.Menu:
             case GameState.Pause:
                 break;
             case GameState.Play:
@@ -67,6 +69,7 @@ public class GameMaster : MonoBehaviour
     {
         switch (newState)
         {
+            case GameState.Menu:
             case GameState.Pause:
                 // Disable buttons
                 SetButtonState(false);
