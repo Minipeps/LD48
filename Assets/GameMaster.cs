@@ -146,6 +146,11 @@ public class GameMaster : MonoBehaviour
     private void UpdateCountdown(float time)
     {
         currentCharacter.countdown -= time;
+        if (currentCharacter.fullCountdown != 0)
+        {
+            var progress = 100 * currentCharacter.countdown / currentCharacter.fullCountdown;
+            timerController.SetProgress((int)progress);
+        }
         if (currentCharacter.countdown <= 0)
         {
             SwipeCharacter(false);

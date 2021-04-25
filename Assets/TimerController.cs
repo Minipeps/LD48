@@ -23,4 +23,9 @@ public class TimerController : MonoBehaviour
         float inset = (float)(100 - timerProgress) / 100 * ropeWidth;
         rope.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Right, inset, ropeWidth - inset);
     }
+
+    public void SetProgress(int progress)
+    {
+        timerProgress = progress;
+    }
 }
