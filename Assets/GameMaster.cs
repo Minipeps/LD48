@@ -33,6 +33,7 @@ public class GameMaster : MonoBehaviour
     public ResourceFetcher resourceFetcher;
     public ScoringSystem scoringSystem;
     public AudioManager audioManager;
+    public BannerAnimation levelBanner;
 
     public GameObject buttonsHandle;
 
@@ -77,6 +78,8 @@ public class GameMaster : MonoBehaviour
             case GameState.Play:
                 SetButtonState(true);
                 SwitchToNewCharacter();
+                if (currentGameState == GameState.Menu)
+                    levelBanner.AnimateBanner(currentLevel.GetLevelName());
                 break;
         }
         currentGameState = newState;
@@ -148,6 +151,7 @@ public class GameMaster : MonoBehaviour
             currentLevel = newLevel;
             backgroundFiller.UpdateBackground(currentLevel);
             audioManager.PlayAmbiance(previousLevel, currentLevel);
+            levelBanner.AnimateBanner(currentLevel.GetLevelName());
         }
     }
 
@@ -236,6 +240,25 @@ static class LevelMethods
                 return 4;
             default:
                 return 8;
+        }
+    }
+
+    public static string GetLevelName(this Level level)
+    {
+        switch (level)
+        {
+            case Level.Level1:
+                return "Limbus Office";
+            case Level.Level2:
+                return "Bureau of Indulgence";
+            case Level.Level3:
+                return "Heresy Institute";
+            case Level.Level4:
+                return "Violence Agency";
+            case Level.Level5:
+                return "Treachery Department";
+            default:
+                return "Test Level of Doom";
         }
     }
 }
