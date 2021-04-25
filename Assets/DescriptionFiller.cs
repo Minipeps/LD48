@@ -34,7 +34,7 @@ public class DescriptionFiller : MonoBehaviour
         nameField.text = character.name;
 
         // Update criterias
-        yPos = 50;
+        yPos = 60;
         ClearDescriptionFields();
         foreach (Criteria criteria in character.criterias)
         {
@@ -49,7 +49,8 @@ public class DescriptionFiller : MonoBehaviour
         if (settingsManager.isFrench())
         {
             newField.text = " - " + criteria.description.fr;
-        } else
+        }
+        else
         {
             newField.text = " - " + criteria.description.en;
         }
