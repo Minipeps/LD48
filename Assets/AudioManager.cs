@@ -40,7 +40,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayAmbiance(Level previousLevel, Level newLevel) {
+    public void PlayAmbiance(Level previousLevel, Level newLevel)
+    {
         if (!settingsManager.soundEnabled)
         {
             StopAllAmbiances();
@@ -71,6 +72,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopAllAmbiances()
+    {
+        sfxAmbDepth1.Stop();
+        sfxAmbDepth2.Stop();
+        sfxAmbDepth3.Stop();
+    }
+
     private bool ShouldKeepAmbiance(Level previousLevel, Level newLevel)
     {
         switch (previousLevel)
@@ -86,12 +94,5 @@ public class AudioManager : MonoBehaviour
             default:
                 return false;
         }
-    }
-
-    private void  StopAllAmbiances()
-    {
-        sfxAmbDepth1.Stop();
-        sfxAmbDepth2.Stop();
-        sfxAmbDepth3.Stop();
     }
 }
