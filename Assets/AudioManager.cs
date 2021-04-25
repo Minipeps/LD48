@@ -72,19 +72,14 @@ public class AudioManager : MonoBehaviour
         {
             case Level.Level1:
                 return newLevel == Level.Level2;
-                break;
             case Level.Level2:
                 return newLevel == Level.Level1;
-                break;
             case Level.Level3:
                 return newLevel == Level.Level4;
-                break;
             case Level.Level4:
                 return newLevel == Level.Level3;
-                break;
             default:
                 return false;
-                break;
         }
     }
 

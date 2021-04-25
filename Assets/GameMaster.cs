@@ -87,7 +87,7 @@ public class GameMaster : MonoBehaviour
 
     private void SwitchToNewCharacter()
     {
-        currentCharacter = characterFactory.MakeCharacter(3);
+        currentCharacter = characterFactory.MakeCharacter(currentLevel.Criteria());
         UpdateCharacterDisplay();
     }
 
@@ -151,6 +151,25 @@ static class LevelMethods
         else
         {
             return Level.Level5;
+        }
+    }
+
+    public static int Criteria(this Level level)
+    {
+        switch (level)
+        {
+            case Level.Level1:
+                return 2;
+            case Level.Level2:
+                return 3;
+            case Level.Level3:
+                return 3;
+            case Level.Level4:
+                return 4;
+            case Level.Level5:
+                return 5;
+            default:
+                return 3;
         }
     }
 }
