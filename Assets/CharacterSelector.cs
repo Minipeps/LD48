@@ -21,6 +21,12 @@ public class CharacterSelector : MonoBehaviour
     Image eyebrowsImage;
     [SerializeField]
     Image hairImage;
+    [SerializeField]
+    Image hornsImage;
+    [SerializeField]
+    Image wingsImage;
+    [SerializeField]
+    Image haloImage;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +48,15 @@ public class CharacterSelector : MonoBehaviour
         mouthImage.sprite = resourceFetcher.mouths[avatar.mouthType];
         noseImage.sprite = resourceFetcher.noses[avatar.noseType];
         eyesImage.sprite = resourceFetcher.eyes[avatar.eyesType];
+        if (avatar.evilEyesFeature)
+        {
+            eyesImage.sprite = resourceFetcher.evilEyes;
+        }
         eyebrowsImage.sprite = resourceFetcher.eyebrows[avatar.eyebrowsType];
         hairImage.sprite = resourceFetcher.hairs[avatar.hairType];
+        // TODO add gameobject and uncomment
+        // hornsImage.gameObject.SetActive(avatar.hornFeature);
+        // wingsImage.gameObject.SetActive(avatar.wingFeature);
+        // haloImage.gameObject.SetActive(avatar.haloFeature);
     }
 }

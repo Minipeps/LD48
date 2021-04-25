@@ -37,6 +37,7 @@ public class ResourceFetcher : MonoBehaviour
     public Sprite[] eyes;
     public Sprite[] eyebrows;
     public Sprite[] hairs;
+    public Sprite evilEyes;
     public BackgroundSprites backgroundSprites;
 
     // Start is called before the first frame update
@@ -136,6 +137,7 @@ public class ResourceFetcher : MonoBehaviour
         eyes = Resources.LoadAll<Sprite>("ProfilePictures/eyes");
         eyebrows = Resources.LoadAll<Sprite>("ProfilePictures/eyebrows");
         hairs = Resources.LoadAll<Sprite>("ProfilePictures/hair");
+        evilEyes = Resources.Load<Sprite>("ProfilePictures/DemonFeatures/demoneyes");
 
         Debug.Log("Loaded " + headshapes.Length + " headshapes");
         Debug.Log("Loaded " + clothes.Length + " clothes");
