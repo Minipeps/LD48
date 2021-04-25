@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+public struct Description
+{
+    public string en;
+    public string fr;
+}
+
 public struct Criteria
 {
-    public string description;
+    public Description description;
     public int value;
 };
 
@@ -93,7 +99,10 @@ public class ResourceFetcher : MonoBehaviour
                 if (int.TryParse(values[0], out int numValue))
                 {
                     Criteria newCriteria;
-                    newCriteria.description = values[1];
+                    Description newDescription;
+                    newDescription.en = values[1];
+                    newDescription.fr = values[2];
+                    newCriteria.description = newDescription;
                     newCriteria.value = numValue;
                     criterias.Add(newCriteria);
                 }

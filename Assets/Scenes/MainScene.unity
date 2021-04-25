@@ -3649,5 +3649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a94f7ee005f0e64a95dccfc87038f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsManager: {fileID: 406623322}
   nameField: {fileID: 1274741281}
   descriptionFieldPrefab: {fileID: 8109606970309652231, guid: fd262001131b55d4a84183a5e954279a, type: 3}

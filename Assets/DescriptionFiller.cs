@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DescriptionFiller : MonoBehaviour
 {
+    public SettingsManager settingsManager;
     public Text nameField;
 
     [SerializeField]
@@ -45,7 +46,13 @@ public class DescriptionFiller : MonoBehaviour
     private void AddDescriptionField(Criteria criteria)
     {
         Text newField = Instantiate(descriptionFieldPrefab, this.transform);
-        newField.text = " - " + criteria.description;
+        if (settingsManager.isFrench())
+        {
+            newField.text = " - " + criteria.description.fr;
+        } else
+        {
+            newField.text = " - " + criteria.description.en;
+        }
         newField.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, yPos, descriptionFieldPrefab.rectTransform.rect.height);
         descriptionFields.Add(newField);
     }

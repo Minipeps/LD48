@@ -8,6 +8,11 @@ public class SettingsManager : MonoBehaviour
     public bool musicEnabled = true;
     public string langage = "en";
 
+    public bool isFrench()
+    {
+        return langage == "fr";
+    }
+
     // Start is called before the first frame update
     void Start()
     {
