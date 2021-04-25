@@ -114,8 +114,9 @@ public class CharacterFactory : MonoBehaviour
         var sum = 0;
         var respectAngel = false;
         var respectDevil = false;
-        while (sum == 0 && !respectAngel && !respectDevil)
+        while (sum == 0 || !respectAngel || !respectDevil)
         {
+
             values.Clear();
             foreach (int _ in Enumerable.Range(1, criteriaCount))
             {
