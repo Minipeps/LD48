@@ -9,7 +9,6 @@ public class Constants
     public const int scoreMax = 10000;
     public const int winRate = 500;
     public const int loseRate = -750;
-    public const double decreaseRate = -16.0;
     public const int limitLevel1 = 2000;
     public const int limitLevel2 = 4000;
     public const int limitLevel3 = 6000;
@@ -59,8 +58,7 @@ public class GameMaster : MonoBehaviour
             case GameState.Pause:
                 break;
             case GameState.Play:
-                float scoreLost = (float)(Constants.decreaseRate * Time.deltaTime);
-                UpdateScore(scoreLost);
+                UpdateCountdown(Time.deltaTime);
                 break;
         }
     }
@@ -89,35 +87,18 @@ public class GameMaster : MonoBehaviour
 
     public void OnGoToHellClicked()
     {
-        bool win = currentCharacter.shouldGoToHell;
-        if (win)
-        {
-            Debug.Log("WIN: Go to Hell!");
-            UpdateScore(Constants.winRate);
-        }
-        else
-        {
-            Debug.Log("FAIL: What (the hell) ?");
-            UpdateScore(Constants.loseRate);
-        }
-        audioManager.PlayResultSound(win);
-        SwitchToNewCharacter();
+        SwipeCharacter(currentCharacter.shouldGoToHell);
     }
 
     public void OnGoToHeavenClicked()
     {
-        bool win = !currentCharacter.shouldGoToHell;
-        if (win)
-        {
-            Debug.Log("WIN: I'll let you pass on this one...");
-            UpdateScore(Constants.winRate);
-        }
-        else
-        {
-            Debug.Log("FAIL: Well, it seems you were naughtier than I thought!");
-            UpdateScore(Constants.loseRate);
-        }
-        audioManager.PlayResultSound(win);
+        SwipeCharacter(!currentCharacter.shouldGoToHell);
+    }
+
+    private void SwipeCharacter(bool isWin)
+    {
+        UpdateScore(isWin ? Constants.winRate : Constants.loseRate);
+        audioManager.PlayResultSound(isWin);
         SwitchToNewCharacter();
     }
 
@@ -159,6 +140,15 @@ public class GameMaster : MonoBehaviour
             currentLevel = newLevel;
             backgroundFiller.UpdateBackground(currentLevel);
             audioManager.PlayAmbiance(previousLevel, currentLevel);
+        }
+    }
+
+    private void UpdateCountdown(float time)
+    {
+        currentCharacter.countdown -= time;
+        if (currentCharacter.countdown <= 0)
+        {
+            SwipeCharacter(false);
         }
     }
 }
