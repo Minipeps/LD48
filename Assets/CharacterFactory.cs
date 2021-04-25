@@ -20,6 +20,10 @@ public struct Avatar
     public int eyesType;
     public int eyebrowsType;
     public int hairType;
+    public bool wingFeature;
+    public bool haloFeature;
+    public bool hornFeature;
+    public bool evilEyesFeature;
 };
 
 
@@ -39,6 +43,9 @@ public class CharacterFactory : MonoBehaviour
     {
         Character newCharacter = new Character();
         newCharacter.name = GetRandomName();
+        var randomAngelDevilValue = random.Next(0, Constants.angelDevilProba);
+        var isAngel = randomAngelDevilValue == 0;
+        var isDevil = randomAngelDevilValue == 1;
         var criterias = new List<Criteria>();
         var moralValue = 0;
         foreach (int criteriaValue in GenerateRandomCriteriaValues(criteriaCount))
@@ -49,7 +56,14 @@ public class CharacterFactory : MonoBehaviour
         }
         newCharacter.criterias = criterias;
         newCharacter.shouldGoToHell = moralValue < 0;
-        newCharacter.avatar = GenerateRandomCharacterAvatar();
+        if (isDevil)
+        {
+            newCharacter.shouldGoToHell = true;
+        } else if (isAngel)
+        {
+            newCharacter.shouldGoToHell = false;
+        }
+        newCharacter.avatar = GenerateRandomCharacterAvatar(isAngel, isDevil);
         return newCharacter;
     }
 
@@ -62,9 +76,10 @@ public class CharacterFactory : MonoBehaviour
         return firstName + " " + lastName;
     }
 
-    private Avatar GenerateRandomCharacterAvatar()
+    private Avatar GenerateRandomCharacterAvatar(bool isAngel, bool isDevil)
     {
         var avatar = new Avatar();
+        var mainAngelDevilFeature = random.Next(2) == 0;
         avatar.headshapeType = random.Next(fetcher.headshapes.Length);
         avatar.bodyType = random.Next(fetcher.clothes.Length);
         avatar.mouthType = random.Next(fetcher.mouths.Length);
@@ -72,6 +87,10 @@ public class CharacterFactory : MonoBehaviour
         avatar.eyesType = random.Next(fetcher.eyes.Length);
         avatar.eyebrowsType = random.Next(fetcher.eyebrows.Length);
         avatar.hairType = random.Next(fetcher.hairs.Length);
+        avatar.wingFeature = isAngel && mainAngelDevilFeature;
+        avatar.haloFeature = isAngel && !mainAngelDevilFeature;
+        avatar.hornFeature = isDevil && mainAngelDevilFeature;
+        avatar.evilEyesFeature = isDevil && !mainAngelDevilFeature;
         return avatar;
     }
 
