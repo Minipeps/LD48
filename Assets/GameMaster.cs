@@ -29,6 +29,7 @@ public class GameMaster : MonoBehaviour
     public CharacterSelector characterSelector;
     public BackgroundFiller backgroundFiller;
     public DescriptionFiller descriptionFiller;
+    public TimerController timerController;
     public ResourceFetcher resourceFetcher;
     public ScoringSystem scoringSystem;
     public AudioManager audioManager;

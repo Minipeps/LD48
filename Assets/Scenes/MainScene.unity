@@ -1793,6 +1793,7 @@ MonoBehaviour:
   characterSelector: {fileID: 1255431690}
   backgroundFiller: {fileID: 2117613877}
   descriptionFiller: {fileID: 2146787904}
+  timerController: {fileID: 1911497927}
   resourceFetcher: {fileID: 723965664}
   scoringSystem: {fileID: 883773330}
   audioManager: {fileID: 1763785343}
