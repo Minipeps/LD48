@@ -37,7 +37,6 @@ public class GameMaster : MonoBehaviour
     public BannerAnimation levelBanner;
     public ScreenShake screenShake;
     public EndGameManager endGameManager;
-    public SettingsManager settingsManager;
 
     public GameObject buttonsHandle;
 

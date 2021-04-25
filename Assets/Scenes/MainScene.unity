@@ -1942,6 +1942,7 @@ MonoBehaviour:
   levelBanner: {fileID: 2089217688}
   screenShake: {fileID: 944138596}
   endGameManager: {fileID: 723563742}
+  settingsManager: {fileID: 406623322}
   buttonsHandle: {fileID: 686772155}
   currentGameState: 0
   triggerEnd: 0
