@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
+    public GameMaster gameMaster;
     public Text playButton;
     public Text rulesButton;
     public Text languageButton;
@@ -12,7 +13,6 @@ public class SettingsManager : MonoBehaviour
     public Text quitButton;
 
     public bool soundEnabled = true;
-    public bool musicEnabled = true;
     public string language = "en";
 
     public bool isFrench()
@@ -41,8 +41,7 @@ public class SettingsManager : MonoBehaviour
     public void ToggleSound()
     {
         soundEnabled = !soundEnabled;
-        musicEnabled = !musicEnabled;
-
+        gameMaster.ReloadSound();
         soundButton.text = (isFrench() ? "Son" : "Sound") + ": " + (soundEnabled ? "On" : "Off");
     }
 

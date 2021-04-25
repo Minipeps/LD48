@@ -708,13 +708,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49dff8f17ed98ac40b2135f087eef23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMaster: {fileID: 753357152}
   playButton: {fileID: 2115633815}
   rulesButton: {fileID: 1532644514}
   languageButton: {fileID: 1468089725}
   soundButton: {fileID: 1856985986}
   quitButton: {fileID: 448452848}
   soundEnabled: 1
-  musicEnabled: 1
   language: en
 --- !u!4 &406623323
 Transform:

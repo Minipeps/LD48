@@ -95,6 +95,11 @@ public class GameMaster : MonoBehaviour
         SwipeCharacter(!currentCharacter.shouldGoToHell);
     }
 
+    public void ReloadSound()
+    {
+        audioManager.PlayAmbiance(currentLevel, currentLevel);
+    }
+
     private void SwipeCharacter(bool isWin)
     {
         UpdateScore(isWin ? Constants.winRate : Constants.loseRate);
@@ -112,7 +117,7 @@ public class GameMaster : MonoBehaviour
 
     private void SwitchToNewCharacter()
     {
-        currentCharacter = characterFactory.MakeCharacter(currentLevel.Criteria(), 8.0);
+        currentCharacter = characterFactory.MakeCharacter(currentLevel.Criteria(), currentLevel.Countdown());
         UpdateCharacterDisplay();
     }
 
@@ -209,6 +214,25 @@ static class LevelMethods
                 return 5;
             default:
                 return 3;
+        }
+    }
+
+    public static int Countdown(this Level level)
+    {
+        switch (level)
+        {
+            case Level.Level1:
+                return 8;
+            case Level.Level2:
+                return 8;
+            case Level.Level3:
+                return 6;
+            case Level.Level4:
+                return 6;
+            case Level.Level5:
+                return 4;
+            default:
+                return 8;
         }
     }
 }
