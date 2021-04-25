@@ -13,7 +13,7 @@ public class Constants
     public const int limitLevel2 = 4000;
     public const int limitLevel3 = 6000;
     public const int limitLevel4 = 8000;
-    public const int angelDevilProba = 20;
+    public const int angelDevilProba = 15;
 }
 
 public enum GameState
