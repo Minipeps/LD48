@@ -34,6 +34,7 @@ public class GameMaster : MonoBehaviour
     public ScoringSystem scoringSystem;
     public AudioManager audioManager;
     public BannerAnimation levelBanner;
+    public ScreenShake screenShake;
 
     public GameObject buttonsHandle;
 
@@ -110,6 +111,8 @@ public class GameMaster : MonoBehaviour
     {
         UpdateScore(isWin ? Constants.winRate : Constants.loseRate);
         audioManager.PlayResultSound(isWin);
+        if (!isWin)
+            screenShake.Shake();
         SwitchToNewCharacter();
     }
 

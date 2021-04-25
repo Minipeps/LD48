@@ -36,12 +36,7 @@ public class BannerAnimation : MonoBehaviour
     private IEnumerator AnimateBackAndForth(float fadeDuration, float timeoutDuration)
     {
         yield return AnimationMove(targetBannerPos, fadeDuration);
-        float timeout = 0;
-        while (timeout <= timeoutDuration)
-        {
-            timeout += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(timeoutDuration);
         yield return AnimationMove(defaultBannerPos, fadeDuration);
     }
 
