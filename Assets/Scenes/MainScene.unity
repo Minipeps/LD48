@@ -3361,6 +3361,8 @@ MonoBehaviour:
   sfxWin: {fileID: 806950261}
   sfxLoose: {fileID: 1480802595}
   sfxAmbDepth1: {fileID: 480828624}
+  sfxAmbDepth2: {fileID: 479320020}
+  sfxAmbDepth3: {fileID: 1078632710}
 --- !u!4 &1763785344
 Transform:
   m_ObjectHideFlags: 0

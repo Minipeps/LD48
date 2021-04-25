@@ -34,7 +34,7 @@ public class GameMaster : MonoBehaviour
     {
         currentScore = 0;
         currentLevel = Level.Level1;
-	audioManager.playAmbience(currentLevel);
+        audioManager.PlayAmbiance(currentLevel);
         SwitchToNewCharacter();
     }
 
@@ -64,7 +64,7 @@ public class GameMaster : MonoBehaviour
             Debug.Log("FAIL: What (the hell) ?");
             UpdateScore(Constants.loseRate);
         }
-        audioManager.playResultSound(win);
+        audioManager.PlayResultSound(win);
         SwitchToNewCharacter();
     }
 
@@ -81,7 +81,7 @@ public class GameMaster : MonoBehaviour
             Debug.Log("FAIL: Well, it seems you were naughtier than I thought!");
             UpdateScore(Constants.loseRate);
         }
-        audioManager.playResultSound(win);
+        audioManager.PlayResultSound(win);
         SwitchToNewCharacter();
     }
 
@@ -113,7 +113,7 @@ public class GameMaster : MonoBehaviour
         {
             currentLevel = newLevel;
             backgroundFiller.UpdateBackground(currentLevel);
-            // TODO: Update new background, new music etc
+            audioManager.PlayAmbiance(currentLevel);
         }
     }
 }

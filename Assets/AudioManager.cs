@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void playResultSound(bool win)
+    public void PlayResultSound(bool win)
     {
         if (!settingsManager.soundEnabled)
         {
@@ -40,13 +40,32 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void playAmbience(Level level) {
-    	if (level == Level.Level1) {
-    	    sfxAmbDepth1.Play();
-    	} else if (level == Level.Level2) {
-    	    sfxAmbDepth2.Play();
-	} else if (level == Level.Level3) {
-    	    sfxAmbDepth3.Play();
-	}
+    public void PlayAmbiance(Level level) {
+        StopAllAmbiances();
+        switch (level)
+        {
+            case Level.Level1:
+                sfxAmbDepth1.Play();
+                break;
+            case Level.Level2:
+                sfxAmbDepth2.Play();
+                break;
+            case Level.Level3:
+                sfxAmbDepth3.Play();
+                break;
+            case Level.Level4:
+                // TODO
+                break;
+            case Level.Level5:
+                // TODO
+                break;
+        }
+    }
+
+    private void  StopAllAmbiances()
+    {
+        sfxAmbDepth1.Stop();
+        sfxAmbDepth2.Stop();
+        sfxAmbDepth3.Stop();
     }
 }
