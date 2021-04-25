@@ -12,8 +12,8 @@ public class ScoringSystem : MonoBehaviour
     public Image scoreBar;
     public GameObject profile;
 
-    private float yOffsetMin = 63.39f;
-    private float yOffsetMax = 575.6f;
+    private float yOffsetMin = 150f;
+    private float yOffsetMax = 900;
 
     private float cursorHeight = 100f;
 
@@ -45,6 +45,6 @@ public class ScoringSystem : MonoBehaviour
     private void UpdateScoreBar()
     {
         float inset = yOffsetMin + (yOffsetMax - yOffsetMin) * currentScore / Constants.scoreMax;
-        scoreBar.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, inset, cursorHeight);
+        scoreBar.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, inset - cursorHeight, cursorHeight);
     }
 }
