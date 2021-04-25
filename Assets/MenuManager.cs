@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     public GameMaster gameMaster;
     public GameObject menuPanel;
+    public GameObject pauseButton;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +26,14 @@ public class MenuManager : MonoBehaviour
     {
         menuPanel.SetActive(false);
         gameMaster.SwitchGameState(GameState.Play);
+        pauseButton.SetActive(true);
     }
 
     public void OnPauseButtonPressed()
     {
         menuPanel.SetActive(true);
         gameMaster.SwitchGameState(GameState.Pause);
+        pauseButton.SetActive(false);
     }
 
     public void QuitGame()

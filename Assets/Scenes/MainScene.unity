@@ -829,6 +829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMaster: {fileID: 753357152}
   menuPanel: {fileID: 902388114}
+  pauseButton: {fileID: 1423756963}
 --- !u!1 &425275841
 GameObject:
   m_ObjectHideFlags: 0
@@ -4142,7 +4143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1423756964
 RectTransform:
   m_ObjectHideFlags: 0
