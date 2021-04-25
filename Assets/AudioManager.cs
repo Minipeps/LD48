@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
+    public SettingsManager settingsManager;
     public AudioSource sfxWin;
     public AudioSource sfxLoose;
 
@@ -23,6 +23,10 @@ public class AudioManager : MonoBehaviour
 
     public void playResultSound(bool win)
     {
+        if (!settingsManager.soundEnabled)
+        {
+            return;
+        }
         if (win)
         {
             sfxWin.Play();

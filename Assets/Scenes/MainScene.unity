@@ -2975,6 +2975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df519ebdcc1b10749848ee8f7651870e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsManager: {fileID: 406623322}
   sfxWin: {fileID: 806950261}
   sfxLoose: {fileID: 1480802595}
 --- !u!4 &1763785344
