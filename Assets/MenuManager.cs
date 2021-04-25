@@ -59,14 +59,11 @@ public class MenuManager : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quitting Purgatory...");
-        if (Application.isEditor)
-        {
-            EditorApplication.ExitPlaymode();
-        }
-        else
-        {
-            Application.Quit();
-        }
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 
     private void UpdateWording()
@@ -74,8 +71,8 @@ public class MenuManager : MonoBehaviour
         if (settingsManager.isFrench())
         {
             playButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Jouer!" : "Continuer";
-            rulesButton.text = "Règles";
-            languageButton.text = "Langue: Français";
+            rulesButton.text = "Rï¿½gles";
+            languageButton.text = "Langue: Franï¿½ais";
             soundButton.text = "Son: " + (settingsManager.soundEnabled ? "On" : "Off");
             quitButton.text = "Quitter";
             soundButton.text = "Son" + ": " + (settingsManager.soundEnabled ? "On" : "Off");

@@ -9,7 +9,7 @@ public class TimerController : MonoBehaviour
     public int timerProgress = 100;
 
     private RectTransform rope;
-    private float ropeWidth = 494;
+    private float ropeWidth = 481;
 
     // Start is called before the first frame update
     void Start()
