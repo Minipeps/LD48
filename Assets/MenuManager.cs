@@ -71,8 +71,8 @@ public class MenuManager : MonoBehaviour
         if (settingsManager.isFrench())
         {
             playButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Jouer!" : "Continuer";
-            rulesButton.text = "R�gles";
-            languageButton.text = "Langue: Fran�ais";
+            rulesButton.text = "Règles";
+            languageButton.text = "Langue: Français";
             soundButton.text = "Son: " + (settingsManager.soundEnabled ? "On" : "Off");
             quitButton.text = "Quitter";
             soundButton.text = "Son" + ": " + (settingsManager.soundEnabled ? "On" : "Off");
