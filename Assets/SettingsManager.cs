@@ -35,17 +35,17 @@ public class SettingsManager : MonoBehaviour
     public void SwitchLanguage()
     {
         language = isFrench() ? "en" : "fr";
-        UpdateButtonsText();
+        UpdateWording();
     }
 
     public void ToggleSound()
     {
         soundEnabled = !soundEnabled;
         gameMaster.ReloadSound();
-        soundButton.text = (isFrench() ? "Son" : "Sound") + ": " + (soundEnabled ? "On" : "Off");
+        UpdateWording();
     }
 
-    private void UpdateButtonsText()
+    private void UpdateWording()
     {
         if (isFrench())
         {
@@ -54,6 +54,7 @@ public class SettingsManager : MonoBehaviour
             languageButton.text = "Langue: Français";
             soundButton.text = "Son: " + (soundEnabled ? "On" : "Off");
             quitButton.text = "Quitter";
+            soundButton.text = "Son" + ": " + (soundEnabled ? "On" : "Off");
         }
         else
         {
@@ -62,6 +63,7 @@ public class SettingsManager : MonoBehaviour
             languageButton.text = "Language: English";
             soundButton.text = "Sound: " + (soundEnabled ? "On" : "Off");
             quitButton.text = "Quit";
+            soundButton.text = "Sound" + ": " + (soundEnabled ? "On" : "Off");
         }
     }
 }
