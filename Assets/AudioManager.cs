@@ -40,24 +40,50 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayAmbiance(Level level) {
+    public void PlayAmbiance(Level previousLevel, Level newLevel) {
+        if (ShouldKeepAmbiance(previousLevel, newLevel))
+        {
+            return;
+        }
         StopAllAmbiances();
-        switch (level)
+        switch (newLevel)
         {
             case Level.Level1:
                 sfxAmbDepth1.Play();
                 break;
             case Level.Level2:
-                sfxAmbDepth2.Play();
+                sfxAmbDepth1.Play();
                 break;
             case Level.Level3:
-                sfxAmbDepth3.Play();
+                sfxAmbDepth2.Play();
                 break;
             case Level.Level4:
-                // TODO
+                sfxAmbDepth2.Play();
                 break;
             case Level.Level5:
-                // TODO
+                sfxAmbDepth3.Play();
+                break;
+        }
+    }
+
+    private bool ShouldKeepAmbiance(Level previousLevel, Level newLevel)
+    {
+        switch (previousLevel)
+        {
+            case Level.Level1:
+                return newLevel == Level.Level2;
+                break;
+            case Level.Level2:
+                return newLevel == Level.Level1;
+                break;
+            case Level.Level3:
+                return newLevel == Level.Level4;
+                break;
+            case Level.Level4:
+                return newLevel == Level.Level3;
+                break;
+            default:
+                return false;
                 break;
         }
     }

@@ -34,7 +34,7 @@ public class GameMaster : MonoBehaviour
     {
         currentScore = 0;
         currentLevel = Level.Level1;
-        audioManager.PlayAmbiance(currentLevel);
+        audioManager.PlayAmbiance(currentLevel, currentLevel);
         SwitchToNewCharacter();
     }
 
@@ -111,9 +111,10 @@ public class GameMaster : MonoBehaviour
         var newLevel = currentLevel.NewLevel(currentScore);
         if (newLevel != currentLevel)
         {
+            var previousLevel = currentLevel;
             currentLevel = newLevel;
             backgroundFiller.UpdateBackground(currentLevel);
-            audioManager.PlayAmbiance(currentLevel);
+            audioManager.PlayAmbiance(previousLevel, currentLevel);
         }
     }
 }
