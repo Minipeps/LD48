@@ -7,6 +7,9 @@ public class AudioManager : MonoBehaviour
     public SettingsManager settingsManager;
     public AudioSource sfxWin;
     public AudioSource sfxLoose;
+    public AudioSource sfxAmbDepth1;
+    public AudioSource sfxAmbDepth2;
+    public AudioSource sfxAmbDepth3;
 
 
     // Start is called before the first frame update
@@ -35,5 +38,15 @@ public class AudioManager : MonoBehaviour
         {
             sfxLoose.Play();
         }
+    }
+
+    public void playAmbience(Level level) {
+    	if (level == Level.Level1) {
+    	    sfxAmbDepth1.Play();
+    	} else if (level == Level.Level2) {
+    	    sfxAmbDepth2.Play();
+	} else if (level == Level.Level3) {
+    	    sfxAmbDepth3.Play();
+	}
     }
 }

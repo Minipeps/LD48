@@ -32,7 +32,8 @@ public class GameMaster : MonoBehaviour
     void Start()
     {
         currentScore = 0;
-        currentLevel = Level.Level1;
+        currentLevel = Level.Level3;
+	audioManager.playAmbience(currentLevel);
         SwitchToNewCharacter();
     }
 
