@@ -20,8 +20,8 @@ public class TimerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float inset = (float)(100 - timerProgress) / 100 * ropeWidth;
-        rope.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Right, inset, ropeWidth - inset);
+        float inset = (float)timerProgress / 100 * ropeWidth;
+        rope.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, inset);
     }
 
     public void SetProgress(int progress)
