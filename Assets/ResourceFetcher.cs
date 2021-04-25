@@ -15,6 +15,15 @@ public struct Criteria
     public int value;
 };
 
+public struct BackgroundSprites
+{
+    public Sprite level1;
+    public Sprite level2;
+    public Sprite level3;
+    public Sprite level4;
+    public Sprite level5;
+};
+
 public class ResourceFetcher : MonoBehaviour
 {
 
@@ -28,6 +37,7 @@ public class ResourceFetcher : MonoBehaviour
     public Sprite[] eyes;
     public Sprite[] eyebrows;
     public Sprite[] hairs;
+    public BackgroundSprites backgroundSprites;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,6 +46,7 @@ public class ResourceFetcher : MonoBehaviour
         FetchLastNames();
         FetchCriteria();
         FetchAvatars();
+        FetchBackground();
     }
 
     public List<Criteria> GetCriterias()
@@ -51,6 +62,11 @@ public class ResourceFetcher : MonoBehaviour
     public List<string> GetLastNames()
     {
         return lastNames;
+    }
+
+    public BackgroundSprites GetBackgroundSprites()
+    {
+        return backgroundSprites;
     }
 
     private void FetchFirstNames()
@@ -128,6 +144,16 @@ public class ResourceFetcher : MonoBehaviour
         Debug.Log("Loaded " + eyes.Length + " eyes");
         Debug.Log("Loaded " + eyebrows.Length + " eyebrows");
         Debug.Log("Loaded " + hairs.Length + " hairs");
+    }
+
+    private void FetchBackground()
+    {
+        backgroundSprites.level1 = Resources.Load<Sprite>("Backgrounds/lv1");
+        backgroundSprites.level2 = Resources.Load<Sprite>("Backgrounds/lv2");
+        backgroundSprites.level3 = Resources.Load<Sprite>("Backgrounds/lv3");
+        backgroundSprites.level4 = Resources.Load<Sprite>("Backgrounds/lv4");
+        backgroundSprites.level5 = Resources.Load<Sprite>("Backgrounds/lv5");
+        Debug.Log("Backgrounds loaded");
     }
 
     // Update is called once per frame

@@ -19,6 +19,7 @@ public class GameMaster : MonoBehaviour
 {
     public CharacterFactory characterFactory;
     public CharacterSelector characterSelector;
+    public BackgroundFiller backgroundFiller;
     public DescriptionFiller descriptionFiller;
     public ResourceFetcher resourceFetcher;
     public ScoringSystem scoringSystem;
@@ -111,6 +112,7 @@ public class GameMaster : MonoBehaviour
         if (newLevel != currentLevel)
         {
             currentLevel = newLevel;
+            backgroundFiller.UpdateBackground(currentLevel);
             // TODO: Update new background, new music etc
         }
     }
