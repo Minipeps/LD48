@@ -3,8 +3,8 @@
 -1,Stole a TV,A volé une télé
 -1,Broke a friend's car,A cassé la voiture de son ami
 -1,Burned a baby,A brulé un bébé
--1,Cheated on his lover,A trompé sa femme
--1,Downloaded a game illegaly,A téléchargé illégalement un jeu
+-1,Cheated on his lover,A trompé son partenaire
+-1,Downloaded a game illegally,A téléchargé illégalement un jeu
 -1,Didn't pay his taxes,N'a pas payé ses taxes
 -1,Didn't recycle,N'a pas recyclé
 -1,Drank holy water,A bu de l'eau bénite
@@ -25,6 +25,10 @@
 1,Went to the church,Allait à l'église
 1,Cooked for his sick mother,Cuisinait pour sa mère malade
 1,Gave money to a child,A donné de l'argent à un enfant
-1,Was faithful to his lover,Était fidèle à sa femme
+1,Was faithful to his lover,Était fidèle à son partenaire
 1,Saved a baby from a fire,A sauvé un bébé d'un incendie
 1,Discovered a vaccine,A découvert un vaccin
+0,Liked a Michael Bay movie,A aimé un film de Michael Bay
+0,Had a collection of TMNT figures,Avait une collection Tortues Ninjas
+1,Was active in their local communities,Était actif dans leurs communautés locales
+-1,Was a part of the Tecktonik movement,Était membre du mouvement Tecktonik
