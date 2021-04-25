@@ -54,9 +54,8 @@ public class CharacterSelector : MonoBehaviour
         }
         eyebrowsImage.sprite = resourceFetcher.eyebrows[avatar.eyebrowsType];
         hairImage.sprite = resourceFetcher.hairs[avatar.hairType];
-        // TODO add gameobject and uncomment
-        // hornsImage.gameObject.SetActive(avatar.hornFeature);
-        // wingsImage.gameObject.SetActive(avatar.wingFeature);
-        // haloImage.gameObject.SetActive(avatar.haloFeature);
+        hornsImage.gameObject.SetActive(avatar.hornFeature);
+        wingsImage.gameObject.SetActive(avatar.wingFeature);
+        haloImage.gameObject.SetActive(avatar.haloFeature);
     }
 }
