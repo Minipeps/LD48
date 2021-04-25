@@ -11,7 +11,8 @@ public class Fade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Color color = GetComponent<Image>().color;
+        GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0);
     }
 
     // Update is called once per frame
@@ -20,7 +21,7 @@ public class Fade : MonoBehaviour
 
     }
 
-    public void FadeToBlack()
+    public void FadeIn()
     {
         StartCoroutine(FadeAnimation(1, duration));
     }
