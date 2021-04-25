@@ -38,6 +38,7 @@ public class MenuManager : MonoBehaviour
     public void OnPauseButtonPressed()
     {
         menuPanel.SetActive(true);
+        UpdateWording();
         gameMaster.SwitchGameState(GameState.Pause);
         pauseButton.SetActive(false);
     }
@@ -72,7 +73,7 @@ public class MenuManager : MonoBehaviour
     {
         if (settingsManager.isFrench())
         {
-            playButton.text = "Jouer!";
+            playButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Jouer!" : "Continuer";
             rulesButton.text = "Règles";
             languageButton.text = "Langue: Français";
             soundButton.text = "Son: " + (settingsManager.soundEnabled ? "On" : "Off");
@@ -81,7 +82,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            playButton.text = "Play!";
+            playButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Play!" : "Resume";
             rulesButton.text = "Rules";
             languageButton.text = "Language: English";
             soundButton.text = "Sound: " + (settingsManager.soundEnabled ? "On" : "Off");
