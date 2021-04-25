@@ -41,6 +41,10 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlayAmbiance(Level previousLevel, Level newLevel) {
+        if (!settingsManager.soundEnabled)
+        {
+            return;
+        }
         if (ShouldKeepAmbiance(previousLevel, newLevel))
         {
             return;
