@@ -50,7 +50,7 @@ public class CharacterFactory : MonoBehaviour
         var isDevil = randomAngelDevilValue == 1;
         var criterias = new List<Criteria>();
         var moralValue = 0;
-        foreach (int criteriaValue in GenerateRandomCriteriaValues(criteriaCount))
+        foreach (int criteriaValue in GenerateRandomCriteriaValues(criteriaCount, isAngel, isDevil))
         {
             var newCriteria = GetRandomCriteria(criteriaValue, criterias);
             criterias.Add(newCriteria);
@@ -108,11 +108,13 @@ public class CharacterFactory : MonoBehaviour
         return criteriaCandidate;
     }
 
-    private List<int> GenerateRandomCriteriaValues(int criteriaCount)
+    private List<int> GenerateRandomCriteriaValues(int criteriaCount, bool isAngel, bool isDevil)
     {
         var values = new List<int>();
         var sum = 0;
-        while (sum == 0)
+        var respectAngel = false;
+        var respectDevil = false;
+        while (sum == 0 && !respectAngel && !respectDevil)
         {
             values.Clear();
             foreach (int _ in Enumerable.Range(1, criteriaCount))
@@ -121,6 +123,8 @@ public class CharacterFactory : MonoBehaviour
                 values.Add(value);
                 sum += value;
             }
+            respectAngel = !isAngel || sum < 0;
+            respectDevil = !isDevil || sum > 0;
         }
         return values;
     }
