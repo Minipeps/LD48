@@ -21,6 +21,7 @@ public enum GameState
     Menu,
     Pause,
     Play,
+    Credits,
 }
 
 public class GameMaster : MonoBehaviour
@@ -35,10 +36,14 @@ public class GameMaster : MonoBehaviour
     public AudioManager audioManager;
     public BannerAnimation levelBanner;
     public ScreenShake screenShake;
+    public EndGameManager endGameManager;
 
     public GameObject buttonsHandle;
 
     public GameState currentGameState;
+
+    // TMP: debug end trigger
+    public bool triggerEnd = false;
 
     private Level currentLevel;
     private float currentScore;
@@ -60,11 +65,16 @@ public class GameMaster : MonoBehaviour
         {
             case GameState.Menu:
             case GameState.Pause:
+            case GameState.Credits:
                 break;
             case GameState.Play:
                 UpdateCountdown(Time.deltaTime);
                 break;
         }
+
+        // TMP: debug end trigger
+        if (triggerEnd)
+            SwitchGameState(GameState.Credits);
     }
 
     public void SwitchGameState(GameState newState)
@@ -81,6 +91,11 @@ public class GameMaster : MonoBehaviour
                 SwitchToNewCharacter();
                 if (currentGameState == GameState.Menu)
                     levelBanner.AnimateBanner(currentLevel.GetLevelName());
+                break;
+            case GameState.Credits:
+                SetButtonState(false);
+                endGameManager.TriggerEndCredits();
+                audioManager.StopAllAmbiances();
                 break;
         }
         currentGameState = newState;
@@ -140,6 +155,7 @@ public class GameMaster : MonoBehaviour
         else if (currentScore > Constants.scoreMax)
         {
             currentScore = Constants.scoreMax;
+            SwitchGameState(GameState.Credits);
         }
         scoringSystem.UpdateScore(currentScore);
         UpdateLevel();
