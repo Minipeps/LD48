@@ -14,6 +14,7 @@ public class Constants
     public const int limitLevel3 = 6000;
     public const int limitLevel4 = 8000;
     public const int angelDevilProba = 15;
+    public const int commentProba = 5;
 }
 
 public enum GameState
@@ -104,20 +105,26 @@ public class GameMaster : MonoBehaviour
                 SetButtonState(false);
                 // Show tutorial
                 tutorialPanel.SetActive(true);
+                audioManager.StopAllFuses();
                 break;
             case GameState.Play:
                 SetButtonState(true);
                 tutorialPanel.SetActive(false);
                 SwitchToNewCharacter();
                 if (currentGameState == GameState.Menu)
+                {
+                    scoringSystem.UpdateLevelNames(maxReachedLevel);
                     levelBanner.AnimateBanner(currentLevel.GetLevelName());
-                shouldStartMusic = currentGameState == GameState.Menu;
+                    shouldStartMusic = true;
+                }
                 break;
             case GameState.Credits:
                 SetButtonState(false);
                 screenShake.StrongShake();
                 endGameManager.TriggerEndCredits();
                 audioManager.StopAllAmbiances();
+                audioManager.StopAllFuses();
+                shouldStartMusic = true;
                 break;
         }
         currentGameState = newState;
@@ -152,14 +159,17 @@ public class GameMaster : MonoBehaviour
     private void SwipeCharacter(Character character, bool isWin)
     {
         UpdateScore(isWin ? Constants.winRate : Constants.loseRate);
+        audioManager.StopAllFuses();
         audioManager.PlayResultSound(isWin);
-        if (!isWin && (character.isDevil || character.isAngel))
-        {
-            audioManager.PlaySpecialFeatureFailSound(character.isDevil);
-        }
         if (!isWin)
+        {
             screenShake.Shake();
-        SwitchToNewCharacter();
+            if (character.isDevil || character.isAngel)
+                audioManager.PlaySpecialFeatureFailSound(character.isDevil);
+        }
+        audioManager.PlayComment(isWin);
+        if (currentGameState == GameState.Play)
+            SwitchToNewCharacter();
     }
 
     private void SetButtonState(bool enable)
@@ -174,6 +184,7 @@ public class GameMaster : MonoBehaviour
     {
         currentCharacter = characterFactory.MakeCharacter(currentLevel.Criteria(), currentLevel.Countdown());
         UpdateCharacterDisplay();
+        audioManager.PlayFuse(currentLevel);
     }
 
     private void UpdateScore(float value)
@@ -200,7 +211,8 @@ public class GameMaster : MonoBehaviour
             if (newLevel > maxReachedLevel)
             {
                 maxReachedLevel = newLevel;
-                audioManager.PlayLevelTransition(newLevel);
+                audioManager.PlayLevelTransition();
+                scoringSystem.UpdateLevelNames(maxReachedLevel);
             }
             var previousLevel = currentLevel;
             currentLevel = newLevel;

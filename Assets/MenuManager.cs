@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour
     public Text soundButton;
     public Text quitButton;
     public Tutorial tutorialPanel;
+    public EndGameManager credits;
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +39,8 @@ public class MenuManager : MonoBehaviour
     public void OnPauseButtonPressed()
     {
         menuPanel.SetActive(true);
-        UpdateWording();
         gameMaster.SwitchGameState(GameState.Pause);
+        UpdateWording();
         pauseButton.SetActive(false);
     }
 
@@ -57,6 +58,14 @@ public class MenuManager : MonoBehaviour
                 QuitGame();
                 break;
         }
+    }
+
+    public void OnMenuButtonPressed()
+    {
+        menuPanel.SetActive(true);
+        gameMaster.ResetGame();
+        UpdateWording();
+        pauseButton.SetActive(false);
     }
 
     public void OnLanguagePressed()
@@ -101,5 +110,6 @@ public class MenuManager : MonoBehaviour
             soundButton.text = "Sound" + ": " + (settingsManager.soundEnabled ? "On" : "Off");
         }
         tutorialPanel.UpdateWording(settingsManager.isFrench());
+        credits.UpdateWording(settingsManager.isFrench());
     }
 }

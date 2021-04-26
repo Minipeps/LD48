@@ -11,7 +11,7 @@ public class BannerAnimation : MonoBehaviour
 
     private Text bannerText;
 
-    private Vector3 defaultBannerPos;
+    private Vector2 defaultBannerPos;
     private Vector2 targetBannerPos = new Vector2(0, 400);
 
     // Start is called before the first frame update
@@ -19,6 +19,8 @@ public class BannerAnimation : MonoBehaviour
     {
         bannerText = GetComponentInChildren<Text>();
         defaultBannerPos = transform.localPosition;
+        defaultBannerPos.x /= Screen.width;
+        defaultBannerPos.y /= Screen.height;
     }
 
     // Update is called once per frame
@@ -33,11 +35,16 @@ public class BannerAnimation : MonoBehaviour
         StartCoroutine(AnimateBackAndForth(animationDuration, animationDuration));
     }
 
+    private Vector2 GetDefaultPos()
+    {
+        return new Vector2(Screen.width * defaultBannerPos.x, Screen.height * defaultBannerPos.y);
+    }
+
     private IEnumerator AnimateBackAndForth(float fadeDuration, float timeoutDuration)
     {
         yield return AnimationMove(targetBannerPos, fadeDuration);
         yield return new WaitForSeconds(timeoutDuration);
-        yield return AnimationMove(defaultBannerPos, fadeDuration);
+        yield return AnimationMove(GetDefaultPos(), fadeDuration);
     }
 
     private IEnumerator AnimationMove(Vector3 target, float duration)
