@@ -14,6 +14,7 @@ public class Constants
     public const int limitLevel3 = 6000;
     public const int limitLevel4 = 8000;
     public const int angelDevilProba = 15;
+    public const int commentProba = 5;
 }
 
 public enum GameState
@@ -160,6 +161,7 @@ public class GameMaster : MonoBehaviour
         if (!isWin)
             screenShake.Shake();
         SwitchToNewCharacter();
+	audioManager.PlayComment(isWin);
     }
 
     private void SetButtonState(bool enable)

@@ -20,18 +20,57 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxTransition1;
     public AudioSource sfxTransition2;
     public AudioSource sfxTransition3;
+    public AudioSource sfxCongrats;
+    public AudioSource sfxReprimand;
 
+    private float timer; 
+     
+    private System.Random random;
 
     // Start is called before the first frame update
     void Start()
     {
-
+	timer = 0;
+	random = new System.Random();
     }
 
     // Update is called once per frame
     void Update()
     {
+	UpdateCountdown(Time.deltaTime);
+    }
 
+    private void UpdateCountdown(float time)
+    {
+        timer -= time;
+        if (timer <= 0)
+        {
+	    sfxCongrats.Stop();
+	    sfxReprimand.Stop();
+        }
+    }
+
+    public void PlayComment(bool positiv)
+    {
+	var randPlay = random.Next(0, Constants.commentProba);
+	if(randPlay == 0 && settingsManager.soundEnabled) 
+	{
+	    var commentIt = random.Next(0, 8);
+	    if(positiv){
+	    	sfxCongrats.time = commentIt * 2;
+		if(!sfxCongrats.isPlaying)
+		{
+	    	    sfxCongrats.Play();
+		}
+	    } else {
+	    	sfxReprimand.time = commentIt * 2;
+		if(!sfxReprimand.isPlaying)
+		{
+	    	    sfxReprimand.Play();
+		}
+	    }
+	    timer = 2;
+	}
     }
 
     public void PlayResultSound(bool win)
