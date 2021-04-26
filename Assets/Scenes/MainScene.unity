@@ -8696,9 +8696,7 @@ MonoBehaviour:
   musicLevel3: {fileID: 814773763}
   musicLevel4: {fileID: 1726603897}
   musicLevel5: {fileID: 596946303}
-  sfxTransition1: {fileID: 1905341989}
-  sfxTransition2: {fileID: 1905341989}
-  sfxTransition3: {fileID: 1905341989}
+  sfxTransition: {fileID: 1905341989}
   sfxCongrats: {fileID: 218307747}
   sfxReprimand: {fileID: 553159951}
 --- !u!4 &1763785344
