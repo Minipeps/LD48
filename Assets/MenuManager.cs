@@ -90,7 +90,7 @@ public class MenuManager : MonoBehaviour
             rulesButton.text = "Règles";
             languageButton.text = "Langue: Français";
             soundButton.text = "Son: " + (settingsManager.soundEnabled ? "On" : "Off");
-            quitButton.text = "Quitter";
+            quitButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Quitter" : "Retour au Menu";
             soundButton.text = "Son" + ": " + (settingsManager.soundEnabled ? "On" : "Off");
         }
         else
@@ -99,7 +99,7 @@ public class MenuManager : MonoBehaviour
             rulesButton.text = "Rules";
             languageButton.text = "Language: English";
             soundButton.text = "Sound: " + (settingsManager.soundEnabled ? "On" : "Off");
-            quitButton.text = "Quit";
+            quitButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Quit" : "Back to Menu";
             soundButton.text = "Sound" + ": " + (settingsManager.soundEnabled ? "On" : "Off");
         }
     }
