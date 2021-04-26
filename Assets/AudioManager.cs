@@ -12,7 +12,11 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxAmbDepth1;
     public AudioSource sfxAmbDepth2;
     public AudioSource sfxAmbDepth3;
-
+    public AudioSource musicLevel1;
+    public AudioSource musicLevel2;
+    public AudioSource musicLevel3;
+    public AudioSource musicLevel4;
+    public AudioSource musicLevel5;
 
     // Start is called before the first frame update
     void Start()
