@@ -116,12 +116,12 @@ public class GameMaster : MonoBehaviour
 
     public void OnGoToHellClicked()
     {
-        SwipeCharacter(currentCharacter.shouldGoToHell);
+        SwipeCharacter(currentCharacter, currentCharacter.shouldGoToHell);
     }
 
     public void OnGoToHeavenClicked()
     {
-        SwipeCharacter(!currentCharacter.shouldGoToHell);
+        SwipeCharacter(currentCharacter, !currentCharacter.shouldGoToHell);
     }
 
     public void ReloadSound()
@@ -129,10 +129,13 @@ public class GameMaster : MonoBehaviour
         audioManager.PlayAmbiance(currentLevel, currentLevel);
     }
 
-    private void SwipeCharacter(bool isWin)
+    private void SwipeCharacter(Character character, bool isWin)
     {
         UpdateScore(isWin ? Constants.winRate : Constants.loseRate);
         audioManager.PlayResultSound(isWin);
+        if (!isWin && (character.isDevil || character.isAngel)) {
+            audioManager.PlaySpecialFeatureFailSound(character.isDevil);
+        }
         if (!isWin)
             screenShake.Shake();
         SwitchToNewCharacter();
@@ -191,7 +194,7 @@ public class GameMaster : MonoBehaviour
         }
         if (currentCharacter.countdown <= 0)
         {
-            SwipeCharacter(false);
+            SwipeCharacter(currentCharacter, false);
         }
     }
 }

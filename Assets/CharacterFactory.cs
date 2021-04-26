@@ -11,6 +11,8 @@ public struct Character
     public Avatar avatar;
     public double fullCountdown;
     public double countdown;
+    public bool isDevil;
+    public bool isAngel;
 };
 
 public struct Avatar
@@ -46,11 +48,11 @@ public class CharacterFactory : MonoBehaviour
         Character newCharacter = new Character();
         newCharacter.name = GetRandomName();
         var randomAngelDevilValue = random.Next(0, Constants.angelDevilProba);
-        var isAngel = randomAngelDevilValue == 0;
-        var isDevil = randomAngelDevilValue == 1;
+        newCharacter.isAngel = randomAngelDevilValue == 0;
+        newCharacter.isDevil = randomAngelDevilValue == 1;
         var criterias = new List<Criteria>();
         var moralValue = 0;
-        foreach (int criteriaValue in GenerateRandomCriteriaValues(criteriaCount, isAngel, isDevil))
+        foreach (int criteriaValue in GenerateRandomCriteriaValues(criteriaCount, newCharacter.isAngel, newCharacter.isDevil))
         {
             var newCriteria = GetRandomCriteria(criteriaValue, criterias);
             criterias.Add(newCriteria);
@@ -58,14 +60,14 @@ public class CharacterFactory : MonoBehaviour
         }
         newCharacter.criterias = criterias;
         newCharacter.shouldGoToHell = moralValue < 0;
-        if (isDevil)
+        if (newCharacter.isDevil)
         {
             newCharacter.shouldGoToHell = true;
-        } else if (isAngel)
+        } else if (newCharacter.isAngel)
         {
             newCharacter.shouldGoToHell = false;
         }
-        newCharacter.avatar = GenerateRandomCharacterAvatar(isAngel, isDevil);
+        newCharacter.avatar = GenerateRandomCharacterAvatar(newCharacter.isAngel, newCharacter.isDevil);
         newCharacter.fullCountdown = countdown;
         newCharacter.countdown = countdown;
         return newCharacter;
