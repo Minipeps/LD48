@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicLevel3;
     public AudioSource musicLevel4;
     public AudioSource musicLevel5;
+    public AudioSource musicCredits;
     public AudioSource sfxTransition;
     public AudioSource sfxCongrats;
     public AudioSource sfxReprimand;
@@ -136,6 +137,11 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
+        if (gameState == GameState.Credits)
+        {
+            musicCredits.Play();
+            return;
+        }
         switch (level)
         {
             case Level.Level1:
@@ -163,6 +169,7 @@ public class AudioManager : MonoBehaviour
         musicLevel3.Stop();
         musicLevel4.Stop();
         musicLevel5.Stop();
+        musicCredits.Stop();
     }
 
     public void PlayAmbiance(Level previousLevel, Level newLevel)

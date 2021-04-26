@@ -124,6 +124,7 @@ public class GameMaster : MonoBehaviour
                 endGameManager.TriggerEndCredits();
                 audioManager.StopAllAmbiances();
                 audioManager.StopAllFuses();
+                shouldStartMusic = true;
                 break;
         }
         currentGameState = newState;
