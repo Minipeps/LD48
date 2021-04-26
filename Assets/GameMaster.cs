@@ -42,6 +42,8 @@ public class GameMaster : MonoBehaviour
 
     public GameState currentGameState;
 
+    public Level maxReachedLevel;
+
     // TMP: debug end trigger
     public bool triggerEnd = false;
 
@@ -78,6 +80,7 @@ public class GameMaster : MonoBehaviour
     {
         SwitchGameState(GameState.Menu);
         currentScore = 0;
+	maxReachedLevel = Level.Level1;
         scoringSystem.UpdateScore(currentScore);
         currentLevel = Level.Level1;
         backgroundFiller.UpdateBackground(currentLevel);
@@ -177,6 +180,11 @@ public class GameMaster : MonoBehaviour
         var newLevel = currentLevel.NewLevel(currentScore);
         if (newLevel != currentLevel)
         {
+	    if(newLevel > maxReachedLevel)
+	    {
+		maxReachedLevel = newLevel;	
+		audioManager.PlayLevelTransition(newLevel);
+	    }
             var previousLevel = currentLevel;
             currentLevel = newLevel;
             backgroundFiller.UpdateBackground(currentLevel);
