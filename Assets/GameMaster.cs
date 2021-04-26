@@ -112,7 +112,10 @@ public class GameMaster : MonoBehaviour
                 tutorialPanel.SetActive(false);
                 SwitchToNewCharacter();
                 if (currentGameState == GameState.Menu)
+                {
+                    scoringSystem.UpdateLevelNames(maxReachedLevel);
                     levelBanner.AnimateBanner(currentLevel.GetLevelName());
+                }
                 shouldStartMusic = currentGameState == GameState.Menu;
                 break;
             case GameState.Credits:
@@ -207,6 +210,7 @@ public class GameMaster : MonoBehaviour
             {
                 maxReachedLevel = newLevel;
                 audioManager.PlayLevelTransition();
+                scoringSystem.UpdateLevelNames(maxReachedLevel);
             }
             var previousLevel = currentLevel;
             currentLevel = newLevel;

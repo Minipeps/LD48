@@ -17,10 +17,12 @@ public class ScoringSystem : MonoBehaviour
 
     private float cursorHeight = 100f;
 
+    private DisplayLevelName[] displayLevels;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        displayLevels = GetComponentsInChildren<DisplayLevelName>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,15 @@ public class ScoringSystem : MonoBehaviour
         else if (currentScore < Constants.scoreMin)
         {
             currentScore = Constants.scoreMin;
+        }
+    }
+
+    public void UpdateLevelNames(Level maxReachedLevel)
+    {
+        foreach (DisplayLevelName displayLevel in displayLevels)
+        {
+            if (maxReachedLevel >= displayLevel.level)
+                displayLevel.ShowLevelName();
         }
     }
 
