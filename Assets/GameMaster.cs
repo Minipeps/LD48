@@ -37,6 +37,7 @@ public class GameMaster : MonoBehaviour
     public BannerAnimation levelBanner;
     public ScreenShake screenShake;
     public EndGameManager endGameManager;
+    public GameObject tutorialPanel;
 
     public GameObject buttonsHandle;
 
@@ -101,9 +102,12 @@ public class GameMaster : MonoBehaviour
             case GameState.Pause:
                 // Disable buttons
                 SetButtonState(false);
+                // Show tutorial
+                tutorialPanel.SetActive(true);
                 break;
             case GameState.Play:
                 SetButtonState(true);
+                tutorialPanel.SetActive(false);
                 SwitchToNewCharacter();
                 if (currentGameState == GameState.Menu)
                     levelBanner.AnimateBanner(currentLevel.GetLevelName());
