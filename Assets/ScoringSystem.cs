@@ -49,7 +49,12 @@ public class ScoringSystem : MonoBehaviour
         foreach (DisplayLevelName displayLevel in displayLevels)
         {
             if (maxReachedLevel >= displayLevel.level)
+            {
                 displayLevel.ShowLevelName();
+            } else
+            {
+                displayLevel.HideLevelName();
+            }
         }
     }
 

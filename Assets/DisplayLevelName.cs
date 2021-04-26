@@ -24,4 +24,9 @@ public class DisplayLevelName : MonoBehaviour
     {
         levelName.text = level.GetLevelName();
     }
+
+    public void HideLevelName()
+    {
+        levelName.text = "?????";
+    }
 }
