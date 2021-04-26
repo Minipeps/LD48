@@ -82,6 +82,7 @@ public class GameMaster : MonoBehaviour
         currentLevel = Level.Level1;
         backgroundFiller.UpdateBackground(currentLevel);
         audioManager.PlayAmbiance(currentLevel, currentLevel);
+        audioManager.PlayMusic(currentLevel);
     }
 
     public void SwitchGameState(GameState newState)
@@ -180,6 +181,7 @@ public class GameMaster : MonoBehaviour
             currentLevel = newLevel;
             backgroundFiller.UpdateBackground(currentLevel);
             audioManager.PlayAmbiance(previousLevel, currentLevel);
+            audioManager.PlayMusic(currentLevel);
             levelBanner.AnimateBanner(currentLevel.GetLevelName());
         }
     }

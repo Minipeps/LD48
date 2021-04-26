@@ -6506,6 +6506,10 @@ MonoBehaviour:
   sfxAmbDepth2: {fileID: 479320020}
   sfxAmbDepth3: {fileID: 1078632710}
   musicLevel1: {fileID: 1556185726}
+  musicLevel2: {fileID: 1973510571}
+  musicLevel3: {fileID: 814773763}
+  musicLevel4: {fileID: 1726603897}
+  musicLevel5: {fileID: 596946303}
 --- !u!4 &1763785344
 Transform:
   m_ObjectHideFlags: 0

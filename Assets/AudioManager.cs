@@ -62,18 +62,44 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayAmbiance(Level previousLevel, Level newLevel)
+    public void PlayMusic(Level level)
     {
+        StopAllMusics();
         if (!settingsManager.soundEnabled)
         {
-            StopAllAmbiances();
             return;
         }
+        switch (level)
+        {
+            case Level.Level1:
+                musicLevel1.Play();
+                break;
+            case Level.Level2:
+                musicLevel2.Play();
+                break;
+            case Level.Level3:
+                musicLevel3.Play();
+                break;
+            case Level.Level4:
+                musicLevel4.Play();
+                break;
+            case Level.Level5:
+                musicLevel5.Play();
+                break;
+        }
+    }
+
+    public void PlayAmbiance(Level previousLevel, Level newLevel)
+    {
         if (ShouldKeepAmbiance(previousLevel, newLevel))
         {
             return;
         }
         StopAllAmbiances();
+        if (!settingsManager.soundEnabled)
+        {
+            return;
+        }
         switch (newLevel)
         {
             case Level.Level1:
@@ -92,6 +118,15 @@ public class AudioManager : MonoBehaviour
                 sfxAmbDepth3.Play();
                 break;
         }
+    }
+
+    public void StopAllMusics()
+    {
+        musicLevel1.Stop();
+        musicLevel2.Stop();
+        musicLevel3.Stop();
+        musicLevel4.Stop();
+        musicLevel5.Stop();
     }
 
     public void StopAllAmbiances()
