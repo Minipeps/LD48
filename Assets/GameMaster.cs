@@ -146,6 +146,7 @@ public class GameMaster : MonoBehaviour
     public void ReloadSound()
     {
         audioManager.PlayAmbiance(currentLevel, currentLevel);
+        audioManager.PlayMusic(currentLevel, currentGameState);
     }
 
     private void SwipeCharacter(Character character, bool isWin)
