@@ -89,11 +89,12 @@ public class GameMaster : MonoBehaviour
         currentLevel = Level.Level1;
         backgroundFiller.UpdateBackground(currentLevel);
         audioManager.PlayAmbiance(currentLevel, currentLevel);
-        audioManager.PlayMusic(currentLevel);
+        audioManager.PlayMusic(currentLevel, currentGameState);
     }
 
     public void SwitchGameState(GameState newState)
     {
+        var shouldStartMusic = false;
         switch (newState)
         {
             case GameState.Menu:
@@ -106,6 +107,7 @@ public class GameMaster : MonoBehaviour
                 SwitchToNewCharacter();
                 if (currentGameState == GameState.Menu)
                     levelBanner.AnimateBanner(currentLevel.GetLevelName());
+                shouldStartMusic = currentGameState == GameState.Menu;
                 break;
             case GameState.Credits:
                 SetButtonState(false);
@@ -115,6 +117,10 @@ public class GameMaster : MonoBehaviour
                 break;
         }
         currentGameState = newState;
+        if (shouldStartMusic)
+        {
+            audioManager.PlayMusic(currentLevel, currentGameState);
+        }
     }
 
     public void UpdateCharacterDisplay()
@@ -195,7 +201,7 @@ public class GameMaster : MonoBehaviour
             currentLevel = newLevel;
             backgroundFiller.UpdateBackground(currentLevel);
             audioManager.PlayAmbiance(previousLevel, currentLevel);
-            audioManager.PlayMusic(currentLevel);
+            audioManager.PlayMusic(currentLevel, currentGameState);
             levelBanner.AnimateBanner(currentLevel.GetLevelName());
         }
     }

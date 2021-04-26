@@ -66,10 +66,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayMusic(Level level)
+    public void PlayMusic(Level level, GameState gameState)
     {
         StopAllMusics();
-        if (!settingsManager.soundEnabled)
+        if (!settingsManager.soundEnabled || gameState == GameState.Menu)
         {
             return;
         }
