@@ -115,8 +115,8 @@ public class GameMaster : MonoBehaviour
                 {
                     scoringSystem.UpdateLevelNames(maxReachedLevel);
                     levelBanner.AnimateBanner(currentLevel.GetLevelName());
+                    shouldStartMusic = true;
                 }
-                shouldStartMusic = currentGameState == GameState.Menu;
                 break;
             case GameState.Credits:
                 SetButtonState(false);
@@ -168,7 +168,8 @@ public class GameMaster : MonoBehaviour
                 audioManager.PlaySpecialFeatureFailSound(character.isDevil);
         }
         audioManager.PlayComment(isWin);
-        SwitchToNewCharacter();
+        if (currentGameState == GameState.Play)
+            SwitchToNewCharacter();
     }
 
     private void SetButtonState(bool enable)
