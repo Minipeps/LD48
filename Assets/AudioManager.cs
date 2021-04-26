@@ -43,9 +43,7 @@ public class AudioManager : MonoBehaviour
     public void PlayFuse(Level level)
     {
         if (!settingsManager.soundEnabled)
-        {
             return;
-        }
         switch (level)
         {
             case Level.Level1:
@@ -73,9 +71,7 @@ public class AudioManager : MonoBehaviour
     {
         var randPlay = random.Next(0, Constants.commentProba);
         if (!settingsManager.soundEnabled || randPlay != 0)
-        {
             return;
-        }
         var commentTimezone = random.Next(0, 8);
         if (isWin && !sfxCongrats.isPlaying)
         {
@@ -93,50 +89,34 @@ public class AudioManager : MonoBehaviour
     public void PlayResultSound(bool win)
     {
         if (!settingsManager.soundEnabled)
-        {
             return;
-        }
         if (win)
-        {
             sfxWin.Play();
-        }
         else
-        {
             sfxLoose.Play();
-        }
     }
 
     public void PlayClickSound()
     {
         if (!settingsManager.soundEnabled)
-        {
             return;
-        }
         sfxClick.Play();
     }
 
     public void PlaySpecialFeatureFailSound(bool isDevil)
     {
         if (!settingsManager.soundEnabled)
-        {
             return;
-        }
         if (isDevil)
-        {
             sfxDevilFail.Play();
-        }
         else
-        {
             sfxAngelFail.Play();
-        }
     }
 
     public void PlayLevelTransition()
     {
         if (!settingsManager.soundEnabled)
-        {
             return;
-        }
         sfxTransition.Play();
     }
 
@@ -144,9 +124,7 @@ public class AudioManager : MonoBehaviour
     {
         StopAllMusics();
         if (!settingsManager.soundEnabled || gameState == GameState.Menu)
-        {
             return;
-        }
         if (gameState == GameState.Credits)
         {
             musicCredits.Play();
@@ -185,14 +163,10 @@ public class AudioManager : MonoBehaviour
     public void PlayAmbiance(Level previousLevel, Level newLevel)
     {
         if (ShouldKeepAmbiance(previousLevel, newLevel))
-        {
             return;
-        }
         StopAllAmbiances();
         if (!settingsManager.soundEnabled)
-        {
             return;
-        }
         switch (newLevel)
         {
             case Level.Level1:
