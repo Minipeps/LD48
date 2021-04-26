@@ -20,6 +20,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxTransition;
     public AudioSource sfxCongrats;
     public AudioSource sfxReprimand;
+    public AudioSource sfxFuse8;
+    public AudioSource sfxFuse6;
+    public AudioSource sfxFuse4;
 
     private float timer; 
      
@@ -45,6 +48,36 @@ public class AudioManager : MonoBehaviour
         {
 	    sfxCongrats.Stop();
 	    sfxReprimand.Stop();
+        }
+    }
+
+    public void PlayFuse(Level level)
+    {
+        if (!settingsManager.soundEnabled)
+        {
+            return;
+        }
+
+        switch (level)
+        {
+            case Level.Level1:
+	        sfxFuse8.Play();
+		break;
+            case Level.Level2:
+	        sfxFuse8.Play();
+		break;
+            case Level.Level3:
+	        sfxFuse6.Play();
+		break;
+            case Level.Level4:
+	        sfxFuse6.Play();
+		break;
+            case Level.Level5:
+	        sfxFuse4.Play();
+		break;
+            default:
+	        sfxFuse8.Play();
+		break;
         }
     }
 
@@ -175,6 +208,9 @@ public class AudioManager : MonoBehaviour
         sfxAmbDepth1.Stop();
         sfxAmbDepth2.Stop();
         sfxAmbDepth3.Stop();
+	sfxFuse8.Stop();
+	sfxFuse6.Stop();
+	sfxFuse4.Stop();
     }
 
     public void PlayLevelTransition(Level level)

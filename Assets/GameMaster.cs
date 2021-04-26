@@ -162,6 +162,7 @@ public class GameMaster : MonoBehaviour
             screenShake.Shake();
         SwitchToNewCharacter();
 	audioManager.PlayComment(isWin);
+	audioManager.PlayFuse(currentLevel);
     }
 
     private void SetButtonState(bool enable)
