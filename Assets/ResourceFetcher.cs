@@ -72,7 +72,7 @@ public class ResourceFetcher : MonoBehaviour
 
     private void FetchFirstNames()
     {
-        string namesPath = "Resources/firstnames.csv";
+        string namesPath = Path.Combine(Application.streamingAssetsPath, "firstnames.csv");
         using (var reader = new StreamReader(namesPath))
         {
             firstNames = new List<string>();
@@ -88,7 +88,7 @@ public class ResourceFetcher : MonoBehaviour
 
     private void FetchLastNames()
     {
-        string namesPath = "Resources/lastnames.csv";
+        string namesPath = Path.Combine(Application.streamingAssetsPath, "lastnames.csv");
         using (var reader = new StreamReader(namesPath))
         {
             lastNames = new List<string>();
@@ -104,7 +104,7 @@ public class ResourceFetcher : MonoBehaviour
 
     private void FetchCriteria()
     {
-        string criteriaPath = "Resources/criteria.csv";
+        string criteriaPath = Path.Combine(Application.streamingAssetsPath, "criteria.csv");
         using (var reader = new StreamReader(criteriaPath))
         {
             criterias = new List<Criteria>();
