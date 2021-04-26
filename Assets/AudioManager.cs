@@ -17,9 +17,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicLevel3;
     public AudioSource musicLevel4;
     public AudioSource musicLevel5;
-    public AudioSource sfxTransition1;
-    public AudioSource sfxTransition2;
-    public AudioSource sfxTransition3;
+    public AudioSource sfxTransition;
     public AudioSource sfxCongrats;
     public AudioSource sfxReprimand;
 
@@ -181,22 +179,23 @@ public class AudioManager : MonoBehaviour
 
     public void PlayLevelTransition(Level level)
     {
+        // TODO CLEAN
         switch (level)
         {
             case Level.Level1:
-                sfxTransition1.Play();
+                sfxTransition.Play();
                 break;
             case Level.Level2:
-                sfxTransition1.Play();
+                sfxTransition.Play();
                 break;
             case Level.Level3:
-                sfxTransition2.Play();
+                sfxTransition.Play();
                 break;
             case Level.Level4:
-                sfxTransition2.Play();
+                sfxTransition.Play();
                 break;
             case Level.Level5:
-                sfxTransition3.Play();
+                sfxTransition.Play();
                 break;
 	}
     }
