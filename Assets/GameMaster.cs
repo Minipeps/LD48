@@ -129,9 +129,7 @@ public class GameMaster : MonoBehaviour
         }
         currentGameState = newState;
         if (shouldStartMusic)
-        {
             audioManager.PlayMusic(currentLevel, currentGameState);
-        }
     }
 
     public void UpdateCharacterDisplay()
@@ -232,9 +230,7 @@ public class GameMaster : MonoBehaviour
             timerController.SetProgress((int)progress);
         }
         if (currentCharacter.countdown <= 0)
-        {
             SwipeCharacter(currentCharacter, false);
-        }
     }
 }
 
@@ -252,25 +248,15 @@ static class LevelMethods
     public static Level NewLevel(this Level level, float score)
     {
         if (score < Constants.limitLevel1)
-        {
             return Level.Level1;
-        }
         else if (score < Constants.limitLevel2)
-        {
             return Level.Level2;
-        }
         else if (score < Constants.limitLevel3)
-        {
             return Level.Level3;
-        }
         else if (score < Constants.limitLevel4)
-        {
             return Level.Level4;
-        }
         else
-        {
             return Level.Level5;
-        }
     }
 
     public static int Criteria(this Level level)
