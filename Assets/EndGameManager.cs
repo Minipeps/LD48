@@ -36,7 +36,7 @@ public class EndGameManager : MonoBehaviour
     IEnumerator EndCreditsAnimation()
     {
         creditsHandle.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         credits1.FadeIn();
         frame1.FadeIn();
         yield return new WaitForSeconds(3);
@@ -48,5 +48,7 @@ public class EndGameManager : MonoBehaviour
         credits3.FadeIn();
         yield return new WaitForSeconds(2);
         bubble23.FadeIn();
+        // Show Congratulations
+        // Show return button
     }
 }
