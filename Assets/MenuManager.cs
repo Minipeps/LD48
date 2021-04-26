@@ -39,8 +39,8 @@ public class MenuManager : MonoBehaviour
     public void OnPauseButtonPressed()
     {
         menuPanel.SetActive(true);
-        UpdateWording();
         gameMaster.SwitchGameState(GameState.Pause);
+        UpdateWording();
         pauseButton.SetActive(false);
     }
 
@@ -63,9 +63,8 @@ public class MenuManager : MonoBehaviour
     public void OnMenuButtonPressed()
     {
         menuPanel.SetActive(true);
-        UpdateWording();
-        gameMaster.SwitchGameState(GameState.Menu);
         gameMaster.ResetGame();
+        UpdateWording();
         pauseButton.SetActive(false);
     }
 
