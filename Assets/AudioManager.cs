@@ -24,31 +24,18 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxFuse6;
     public AudioSource sfxFuse4;
 
-    private float timer; 
-     
-    private System.Random random;
+    private float commentTimer = 0;
+    private System.Random random = new System.Random();
 
     // Start is called before the first frame update
     void Start()
     {
-	timer = 0;
-	random = new System.Random();
     }
 
     // Update is called once per frame
     void Update()
     {
-	UpdateCountdown(Time.deltaTime);
-    }
-
-    private void UpdateCountdown(float time)
-    {
-        timer -= time;
-        if (timer <= 0)
-        {
-	    sfxCongrats.Stop();
-	    sfxReprimand.Stop();
-        }
+	    UpdateCountdown(Time.deltaTime);
     }
 
     public void PlayFuse(Level level)
@@ -57,51 +44,48 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
-
         switch (level)
         {
             case Level.Level1:
-	        sfxFuse8.Play();
-		break;
+	            sfxFuse8.Play();
+		        break;
             case Level.Level2:
-	        sfxFuse8.Play();
-		break;
+	            sfxFuse8.Play();
+		        break;
             case Level.Level3:
-	        sfxFuse6.Play();
-		break;
+	            sfxFuse6.Play();
+		        break;
             case Level.Level4:
-	        sfxFuse6.Play();
-		break;
+	            sfxFuse6.Play();
+		        break;
             case Level.Level5:
-	        sfxFuse4.Play();
-		break;
+	            sfxFuse4.Play();
+		        break;
             default:
-	        sfxFuse8.Play();
-		break;
+	            sfxFuse8.Play();
+		        break;
         }
     }
 
-    public void PlayComment(bool positiv)
+    public void PlayComment(bool isWin)
     {
-	var randPlay = random.Next(0, Constants.commentProba);
-	if(randPlay == 0 && settingsManager.soundEnabled) 
-	{
-	    var commentIt = random.Next(0, 8);
-	    if(positiv){
-	    	sfxCongrats.time = commentIt * 2;
-		if(!sfxCongrats.isPlaying)
-		{
-	    	    sfxCongrats.Play();
-		}
-	    } else {
-	    	sfxReprimand.time = commentIt * 2;
-		if(!sfxReprimand.isPlaying)
-		{
-	    	    sfxReprimand.Play();
-		}
-	    }
-	    timer = 2;
-	}
+        var randPlay = random.Next(0, Constants.commentProba);
+        if (!settingsManager.soundEnabled || randPlay != 0)
+        {
+            return;
+        }
+        var commentTimezone = random.Next(0, 8);
+        if (isWin && !sfxCongrats.isPlaying)
+        {
+            sfxCongrats.time = commentTimezone * 2;
+            sfxCongrats.Play();
+        }
+        else if (!isWin && !sfxReprimand.isPlaying)
+        {
+            sfxReprimand.time = commentTimezone * 2;
+            sfxReprimand.Play();
+        }
+        commentTimer = 2;
     }
 
     public void PlayResultSound(bool win)
@@ -136,6 +120,15 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayLevelTransition()
+    {
+        if (!settingsManager.soundEnabled)
+        {
+            return;
+        }
+        sfxTransition.Play();
+    }
+
     public void PlayMusic(Level level, GameState gameState)
     {
         StopAllMusics();
@@ -163,7 +156,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void StopAllMusics()
+    private void StopAllMusics()
     {
         musicLevel1.Stop();
         musicLevel2.Stop();
@@ -208,32 +201,9 @@ public class AudioManager : MonoBehaviour
         sfxAmbDepth1.Stop();
         sfxAmbDepth2.Stop();
         sfxAmbDepth3.Stop();
-	sfxFuse8.Stop();
-	sfxFuse6.Stop();
-	sfxFuse4.Stop();
-    }
-
-    public void PlayLevelTransition(Level level)
-    {
-        // TODO CLEAN
-        switch (level)
-        {
-            case Level.Level1:
-                sfxTransition.Play();
-                break;
-            case Level.Level2:
-                sfxTransition.Play();
-                break;
-            case Level.Level3:
-                sfxTransition.Play();
-                break;
-            case Level.Level4:
-                sfxTransition.Play();
-                break;
-            case Level.Level5:
-                sfxTransition.Play();
-                break;
-	}
+	    sfxFuse8.Stop();
+	    sfxFuse6.Stop();
+	    sfxFuse4.Stop();
     }
 
     private bool ShouldKeepAmbiance(Level previousLevel, Level newLevel)
@@ -250,6 +220,16 @@ public class AudioManager : MonoBehaviour
                 return newLevel == Level.Level3;
             default:
                 return false;
+        }
+    }
+
+    private void UpdateCountdown(float time)
+    {
+        commentTimer -= time;
+        if (commentTimer <= 0)
+        {
+            sfxCongrats.Stop();
+            sfxReprimand.Stop();
         }
     }
 }

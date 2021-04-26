@@ -203,7 +203,7 @@ public class GameMaster : MonoBehaviour
             if (newLevel > maxReachedLevel)
             {
                 maxReachedLevel = newLevel;
-                audioManager.PlayLevelTransition(newLevel);
+                audioManager.PlayLevelTransition();
             }
             var previousLevel = currentLevel;
             currentLevel = newLevel;
