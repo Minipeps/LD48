@@ -26,6 +26,11 @@ public class ScreenShake : MonoBehaviour
         StartCoroutine(ShakeAnimation(shakeIntensity, shakeDuration));
     }
 
+    public void StrongShake()
+    {
+        StartCoroutine(ShakeAnimation(2 * shakeIntensity, 4 * shakeDuration));
+    }
+
     IEnumerator ShakeAnimation(float intensity, float duration)
     {
         float t = 0;

@@ -109,6 +109,7 @@ public class GameMaster : MonoBehaviour
                 break;
             case GameState.Credits:
                 SetButtonState(false);
+                screenShake.StrongShake();
                 endGameManager.TriggerEndCredits();
                 audioManager.StopAllAmbiances();
                 break;
