@@ -7,6 +7,7 @@ using UnityEditor;
 public class MenuManager : MonoBehaviour
 {
     public SettingsManager settingsManager;
+    public AudioManager audioManager;
     public GameMaster gameMaster;
     public GameObject menuPanel;
     public GameObject pauseButton;
@@ -31,6 +32,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnPlayButtonPressed()
     {
+        audioManager.PlayClickSound();
         menuPanel.SetActive(false);
         gameMaster.SwitchGameState(GameState.Play);
         pauseButton.SetActive(true);
@@ -38,6 +40,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnPauseButtonPressed()
     {
+        audioManager.PlayClickSound();
         menuPanel.SetActive(true);
         gameMaster.SwitchGameState(GameState.Pause);
         UpdateWording();
@@ -46,6 +49,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnQuitButtonPressed()
     {
+        audioManager.PlayClickSound();
         switch (gameMaster.currentGameState)
         {
             case GameState.Play:
@@ -62,6 +66,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnMenuButtonPressed()
     {
+        audioManager.PlayClickSound();
         menuPanel.SetActive(true);
         gameMaster.ResetGame();
         UpdateWording();
@@ -70,6 +75,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnLanguagePressed()
     {
+        audioManager.PlayClickSound();
         settingsManager.ToggleLanguage();
         UpdateWording();
     }
@@ -77,6 +83,7 @@ public class MenuManager : MonoBehaviour
     public void OnSoundPressed()
     {
         settingsManager.ToggleSound();
+        audioManager.PlayClickSound();
         gameMaster.ReloadSound();
         UpdateWording();
     }

@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicLevel4;
     public AudioSource musicLevel5;
     public AudioSource musicCredits;
+    public AudioSource sfxClick;
     public AudioSource sfxTransition;
     public AudioSource sfxCongrats;
     public AudioSource sfxReprimand;
@@ -103,6 +104,15 @@ public class AudioManager : MonoBehaviour
         {
             sfxLoose.Play();
         }
+    }
+
+    public void PlayClickSound()
+    {
+        if (!settingsManager.soundEnabled)
+        {
+            return;
+        }
+        sfxClick.Play();
     }
 
     public void PlaySpecialFeatureFailSound(bool isDevil)
