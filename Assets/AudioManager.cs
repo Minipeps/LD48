@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
     public SettingsManager settingsManager;
     public AudioSource sfxWin;
     public AudioSource sfxLoose;
+    public AudioSource sfxDevilFail;
+    public AudioSource sfxAngelFail;
     public AudioSource sfxAmbDepth1;
     public AudioSource sfxAmbDepth2;
     public AudioSource sfxAmbDepth3;
@@ -37,6 +39,22 @@ public class AudioManager : MonoBehaviour
         else
         {
             sfxLoose.Play();
+        }
+    }
+
+    public void PlaySpecialFeatureFailSound(bool isDevil)
+    {
+        if (!settingsManager.soundEnabled)
+        {
+            return;
+        }
+        if (isDevil)
+        {
+            sfxDevilFail.Play();
+        }
+        else
+        {
+            sfxAngelFail.Play();
         }
     }
 
