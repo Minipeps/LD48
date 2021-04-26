@@ -10,6 +10,7 @@ public class HandAnimation : MonoBehaviour
     public float animationDuration;
     public float idleTime;
 
+    // Default pos, in width/height ratio
     private Vector2 defaultPos;
     private float currentIdleTime;
     private bool shouldCheckForIdle;
@@ -18,6 +19,8 @@ public class HandAnimation : MonoBehaviour
     void Start()
     {
         defaultPos = transform.position;
+        defaultPos.x /= Screen.width;
+        defaultPos.y /= Screen.height;
     }
 
     // Update is called once per frame
@@ -51,8 +54,13 @@ public class HandAnimation : MonoBehaviour
 
     public void ResetHandPosition()
     {
-        AnimateTo(defaultPos);
+        AnimateTo(GetDefaultPos());
         shouldCheckForIdle = false;
+    }
+
+    private Vector2 GetDefaultPos()
+    {
+        return new Vector2(Screen.width * defaultPos.x, Screen.height * defaultPos.y);
     }
 
     private void AnimateTo(Vector3 target)
