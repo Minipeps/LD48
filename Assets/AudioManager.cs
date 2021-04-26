@@ -201,9 +201,13 @@ public class AudioManager : MonoBehaviour
         sfxAmbDepth1.Stop();
         sfxAmbDepth2.Stop();
         sfxAmbDepth3.Stop();
-	    sfxFuse8.Stop();
-	    sfxFuse6.Stop();
-	    sfxFuse4.Stop();
+    }
+
+    public void StopAllFuses()
+    {
+        sfxFuse8.Stop();
+        sfxFuse6.Stop();
+        sfxFuse4.Stop();
     }
 
     private bool ShouldKeepAmbiance(Level previousLevel, Level newLevel)

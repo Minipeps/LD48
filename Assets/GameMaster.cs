@@ -105,6 +105,7 @@ public class GameMaster : MonoBehaviour
                 SetButtonState(false);
                 // Show tutorial
                 tutorialPanel.SetActive(true);
+                audioManager.StopAllFuses();
                 break;
             case GameState.Play:
                 SetButtonState(true);
@@ -119,6 +120,7 @@ public class GameMaster : MonoBehaviour
                 screenShake.StrongShake();
                 endGameManager.TriggerEndCredits();
                 audioManager.StopAllAmbiances();
+                audioManager.StopAllFuses();
                 break;
         }
         currentGameState = newState;
@@ -153,16 +155,16 @@ public class GameMaster : MonoBehaviour
     private void SwipeCharacter(Character character, bool isWin)
     {
         UpdateScore(isWin ? Constants.winRate : Constants.loseRate);
+        audioManager.StopAllFuses();
         audioManager.PlayResultSound(isWin);
-        if (!isWin && (character.isDevil || character.isAngel))
-        {
-            audioManager.PlaySpecialFeatureFailSound(character.isDevil);
-        }
         if (!isWin)
+        {
             screenShake.Shake();
+            if (character.isDevil || character.isAngel)
+                audioManager.PlaySpecialFeatureFailSound(character.isDevil);
+        }
+        audioManager.PlayComment(isWin);
         SwitchToNewCharacter();
-	audioManager.PlayComment(isWin);
-	audioManager.PlayFuse(currentLevel);
     }
 
     private void SetButtonState(bool enable)
@@ -177,6 +179,7 @@ public class GameMaster : MonoBehaviour
     {
         currentCharacter = characterFactory.MakeCharacter(currentLevel.Criteria(), currentLevel.Countdown());
         UpdateCharacterDisplay();
+        audioManager.PlayFuse(currentLevel);
     }
 
     private void UpdateScore(float value)
