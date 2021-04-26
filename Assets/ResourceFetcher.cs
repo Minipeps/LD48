@@ -75,7 +75,8 @@ public class ResourceFetcher : MonoBehaviour
     {
         firstNames = new List<string>();
         var source = resourcesSource.GetFirstNames();
-        foreach (string line in source.Split('\n')) {
+        foreach (string line in source.Split('\n'))
+        {
             var values = line.Split(',');
             if (values.Length > 0)
                 firstNames.Add(values[0]);
@@ -274,38 +275,38 @@ O'Neill
 
     public string GetCriteria()
     {
-        return @"-1,Drowned a puppy,A noyé un chiot
--1,Punched a kid,A frappé un enfant
--1,Stole a TV,A volé une télé
--1,Broke a friend's car,A cassé la voiture de son ami
--1,Burned a baby,A brulé un bébé
--1,Cheated on his lover,A trompé son partenaire
--1,Downloaded a game illegally,A téléchargé illégalement un jeu
--1,Didn't pay his taxes,N'a pas payé ses taxes
--1,Didn't recycle,N'a pas recyclé
--1,Drank holy water,A bu de l'eau bénite
+        return @"-1,Drowned a puppy,A noyÃ© un chiot
+-1,Punched a kid,A frappÃ© un enfant
+-1,Stole a TV,A volÃ© une tÃ©lÃ©
+-1,Broke a friend's car,A cassÃ© la voiture de son ami
+-1,Burned a baby,A brulÃ© un bÃ©bÃ©
+-1,Cheated on his lover,A trompÃ© son partenaire
+-1,Downloaded a game illegally,A tÃ©lÃ©chargÃ© illÃ©galement un jeu
+-1,Didn't pay his taxes,N'a pas payÃ© ses taxes
+-1,Didn't recycle,N'a pas recyclÃ©
+-1,Drank holy water,A bu de l'eau bÃ©nite
 0,Lost the lottery,A perdu la lotterie
 0,Played the piano,Jouait du piano
-0,Listen to the birds,Écoutait les oiseaux
+0,Listen to the birds,Ã©coutait les oiseaux
 0,Talked in his sleep,Parlait dans son sommeil
-0,Bought a dishwasher,A acheté un lave-vaisselle
-0,Was afraid of spiders,Avait peur des araignées
-0,Was allergic to puppies,Était allergique aux chiots
-0,Went to a great concert,Est allé à un super concert
+0,Bought a dishwasher,A achetÃ© un lave-vaisselle
+0,Was afraid of spiders,Avait peur des araignÃ©es
+0,Was allergic to puppies,Ã©tait allergique aux chiots
+0,Went to a great concert,Est allÃ© Ã  un super concert
 0,Ran a marathon,A couru un marathon
-0,Hated country music,Détestait la musique country
+0,Hated country music,DÃ©testait la musique country
 1,Held the door,A tenu la porte
 1,Washed the dishes,A fait la vaisselle
-1,Bought a present for his cousin,A acheté un cadeau pour son cousin
+1,Bought a present for his cousin,A achetÃ© un cadeau pour son cousin
 1,Says thank you to the baker,Remerciait le boulanger
-1,Went to the church,Allait à l'église
-1,Cooked for his sick mother,Cuisinait pour sa mère malade
-1,Gave money to a child,A donné de l'argent à un enfant
-1,Was faithful to his lover,Était fidèle à son partenaire
-1,Saved a baby from a fire,A sauvé un bébé d'un incendie
-1,Discovered a vaccine,A découvert un vaccin
+1,Went to the church,Allait Ã  l'Ã©glise
+1,Cooked for his sick mother,Cuisinait pour sa mÃ¨re malade
+1,Gave money to a child,A donnÃ© de l'argent Ã  un enfant
+1,Was faithful to his lover,Ã©tait fidÃ¨le Ã  son partenaire
+1,Saved a baby from a fire,A sauvÃ© un bÃ©bÃ© d'un incendie
+1,Discovered a vaccine,A dÃ©couvert un vaccin
 0,Had a turtle collection,Avait une collection de tortues
-1,Was active in their local communities,Était actif dans leurs communautés locales";
+1,Was active in their local communities,Ã©tait actif dans leurs communautÃ©s locales";
     }
 
 }
