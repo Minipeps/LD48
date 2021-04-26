@@ -13,6 +13,7 @@ public class EndGameManager : MonoBehaviour
     public Fade bubble1;
     public Fade credits3;
     public Fade bubble23;
+    public GameObject resetButton;
 
     // Start is called before the first frame update
     void Start()
@@ -33,10 +34,25 @@ public class EndGameManager : MonoBehaviour
         StartCoroutine(EndCreditsAnimation());
     }
 
+    public void Reset()
+    {
+        // Reset background color
+        backgroundFade.Reset();
+        creditsHandle.SetActive(false);
+        credits1.Reset();
+        frame1.Reset();
+        credits2.Reset();
+        frame2.Reset();
+        bubble1.Reset();
+        credits3.Reset();
+        bubble23.Reset();
+        resetButton.SetActive(false);
+    }
+
     IEnumerator EndCreditsAnimation()
     {
         creditsHandle.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         credits1.FadeIn();
         frame1.FadeIn();
         yield return new WaitForSeconds(3);
@@ -44,11 +60,13 @@ public class EndGameManager : MonoBehaviour
         frame2.FadeIn();
         yield return new WaitForSeconds(2);
         bubble1.FadeIn();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         credits3.FadeIn();
         yield return new WaitForSeconds(2);
         bubble23.FadeIn();
         // Show Congratulations
         // Show return button
+        yield return new WaitForSeconds(2);
+        resetButton.SetActive(true);
     }
 }

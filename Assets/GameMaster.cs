@@ -73,14 +73,18 @@ public class GameMaster : MonoBehaviour
 
         // TMP: debug end trigger
         if (triggerEnd)
+        {
+            triggerEnd = false;
             SwitchGameState(GameState.Credits);
+        }
     }
 
     public void ResetGame()
     {
+        endGameManager.Reset();
         SwitchGameState(GameState.Menu);
         currentScore = 0;
-	maxReachedLevel = Level.Level1;
+        maxReachedLevel = Level.Level1;
         scoringSystem.UpdateScore(currentScore);
         currentLevel = Level.Level1;
         backgroundFiller.UpdateBackground(currentLevel);
@@ -137,7 +141,8 @@ public class GameMaster : MonoBehaviour
     {
         UpdateScore(isWin ? Constants.winRate : Constants.loseRate);
         audioManager.PlayResultSound(isWin);
-        if (!isWin && (character.isDevil || character.isAngel)) {
+        if (!isWin && (character.isDevil || character.isAngel))
+        {
             audioManager.PlaySpecialFeatureFailSound(character.isDevil);
         }
         if (!isWin)
@@ -180,11 +185,11 @@ public class GameMaster : MonoBehaviour
         var newLevel = currentLevel.NewLevel(currentScore);
         if (newLevel != currentLevel)
         {
-	    if(newLevel > maxReachedLevel)
-	    {
-		maxReachedLevel = newLevel;	
-		audioManager.PlayLevelTransition(newLevel);
-	    }
+            if (newLevel > maxReachedLevel)
+            {
+                maxReachedLevel = newLevel;
+                audioManager.PlayLevelTransition(newLevel);
+            }
             var previousLevel = currentLevel;
             currentLevel = newLevel;
             backgroundFiller.UpdateBackground(currentLevel);
