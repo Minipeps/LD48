@@ -11,10 +11,10 @@ public class MenuManager : MonoBehaviour
     public GameObject menuPanel;
     public GameObject pauseButton;
     public Text playButton;
-    public Text rulesButton;
     public Text languageButton;
     public Text soundButton;
     public Text quitButton;
+    public Tutorial tutorialPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -87,7 +87,6 @@ public class MenuManager : MonoBehaviour
         if (settingsManager.isFrench())
         {
             playButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Jouer!" : "Continuer";
-            rulesButton.text = "Règles";
             languageButton.text = "Langue: Français";
             soundButton.text = "Son: " + (settingsManager.soundEnabled ? "On" : "Off");
             quitButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Quitter" : "Retour au Menu";
@@ -96,11 +95,11 @@ public class MenuManager : MonoBehaviour
         else
         {
             playButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Play!" : "Resume";
-            rulesButton.text = "Rules";
             languageButton.text = "Language: English";
             soundButton.text = "Sound: " + (settingsManager.soundEnabled ? "On" : "Off");
             quitButton.text = (gameMaster.currentGameState == GameState.Menu) ? "Quit" : "Back to Menu";
             soundButton.text = "Sound" + ": " + (settingsManager.soundEnabled ? "On" : "Off");
         }
+        tutorialPanel.UpdateWording(settingsManager.isFrench());
     }
 }
