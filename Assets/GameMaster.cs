@@ -52,10 +52,7 @@ public class GameMaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentScore = 0;
-        currentLevel = Level.Level1;
-        audioManager.PlayAmbiance(currentLevel, currentLevel);
-        SwitchGameState(GameState.Menu);
+        ResetGame();
     }
 
     // Update is called once per frame
@@ -75,6 +72,16 @@ public class GameMaster : MonoBehaviour
         // TMP: debug end trigger
         if (triggerEnd)
             SwitchGameState(GameState.Credits);
+    }
+
+    public void ResetGame()
+    {
+        SwitchGameState(GameState.Menu);
+        currentScore = 0;
+        scoringSystem.UpdateScore(currentScore);
+        currentLevel = Level.Level1;
+        backgroundFiller.UpdateBackground(currentLevel);
+        audioManager.PlayAmbiance(currentLevel, currentLevel);
     }
 
     public void SwitchGameState(GameState newState)

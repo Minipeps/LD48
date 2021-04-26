@@ -43,6 +43,22 @@ public class MenuManager : MonoBehaviour
         pauseButton.SetActive(false);
     }
 
+    public void OnQuitButtonPressed()
+    {
+        switch (gameMaster.currentGameState)
+        {
+            case GameState.Play:
+            case GameState.Pause:
+            case GameState.Credits:
+                gameMaster.ResetGame();
+                UpdateWording();
+                break;
+            case GameState.Menu:
+                QuitGame();
+                break;
+        }
+    }
+
     public void OnLanguagePressed()
     {
         settingsManager.ToggleLanguage();
@@ -56,7 +72,7 @@ public class MenuManager : MonoBehaviour
         UpdateWording();
     }
 
-    public void QuitGame()
+    private void QuitGame()
     {
         Debug.Log("Quitting Purgatory...");
 #if UNITY_EDITOR
